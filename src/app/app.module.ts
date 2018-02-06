@@ -8,12 +8,13 @@ import { Textfield, TextfieldComponent} from './textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 
 import { JsonService} from './json.service';
-import { SelectComponent } from './select/select.component';
+import { Selectbox, SelectComponent } from './select/select.component';
 
 @NgModule({
   entryComponents: [
     Textfield,
-    Checkbox
+    Checkbox,
+    Selectbox
   ],
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { SelectComponent } from './select/select.component';
     Textfield,
     TestComponent,
     SelectComponent,
+    Selectbox
   ],
 
   imports: [
