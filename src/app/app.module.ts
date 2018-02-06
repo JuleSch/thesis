@@ -3,20 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import { LabelComponent, TextfieldComponent} from './textfield/textfield.component';
+import { Checkbox, CheckboxComponent } from './checkbox/checkbox.component';
+import { Textfield, TextfieldComponent} from './textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 
 import { JsonService} from './json.service';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
-  entryComponents: [LabelComponent],
+  entryComponents: [
+    Textfield,
+    Checkbox
+  ],
   declarations: [
     AppComponent,
     CheckboxComponent,
+    Checkbox,
     TextfieldComponent,
-    LabelComponent,
+    Textfield,
     TestComponent,
+    SelectComponent,
   ],
 
   imports: [

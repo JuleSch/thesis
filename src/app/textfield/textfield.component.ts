@@ -3,10 +3,10 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 
 @Component({
-  selector: 'app-label',
+  selector: 'textfield',
   template: `<div><label>{{label}}<input></label></div>`
 })
-export class LabelComponent {
+export class Textfield {
   @Input() label = 'Label';
 }
 
@@ -20,9 +20,9 @@ export class LabelComponent {
 export class TextfieldComponent implements OnInit {
 
   @ViewChild('container', {read: ViewContainerRef}) container; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  textfieldFactory: ComponentFactory<LabelComponent>;
+  textfieldFactory: ComponentFactory<Textfield>;
   constructor(private resolver: ComponentFactoryResolver){
-    this.textfieldFactory = this.resolver.resolveComponentFactory(LabelComponent);
+    this.textfieldFactory = this.resolver.resolveComponentFactory(Textfield);
   }
 
 
