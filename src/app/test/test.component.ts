@@ -1,5 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import {JsonService} from '../json.service';
+import {JsonService} from '../services/json.service';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class TestComponent implements OnInit{
 
 
   showJson(){
-    this.jsonService.getJson()
+    this.jsonService.getJson('/assets/test.json')
       .subscribe(data =>  this.myJson = data);
   }
 }

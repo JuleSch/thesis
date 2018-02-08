@@ -1,0 +1,32 @@
+{
+  "analogCams": [
+    {
+      "id":"vin/1",
+      "label":"Fahrerkamera",
+      "active":true,
+      "profile":"profile/2",
+      "target":"2"
+    },
+    {
+      "id":"vin/2",
+      "label":"Türkamera",
+      "active":true,
+      "profile":"profile/2",
+      "target":"1"
+    },
+    {
+      "id":"vin/4",
+      "label":"Rückfahrkamera",
+      "active":true,
+      "profile":"profile/1",
+      "target":""
+    },
+    {
+      "id":"vin/6",
+      "label":"",
+      "active":false,
+      "profile":"profile/1",
+      "target":""
+    }
+  ]
+}

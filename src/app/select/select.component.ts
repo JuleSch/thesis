@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@angular/core';
-import {JsonService} from '../json.service';
+import {JsonService} from '../services/json.service';
 
 @Component({
   selector: 'dynamic-selectbox',
@@ -41,7 +41,7 @@ addSelectbox(selectLabel: string, data: any) {
 
 ngOnInit() {
 
-  this.jsonService.getJson().subscribe(data => this.addSelectbox('Hier die Box', data));
+  this.jsonService.getJson('/assets/test.json').subscribe(data => this.addSelectbox('Hier die Box', data));
 
 }
 

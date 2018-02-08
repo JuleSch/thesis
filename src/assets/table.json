@@ -1,0 +1,68 @@
+{
+  "label":"analoge Kameras",
+  "id":"analogCams",
+  "idColumn":"id",
+  "attributes":[
+    {
+      "id":"id",
+      "type":"text",
+      "readOnly": true
+    },
+    {
+      "id":"label",
+      "type":"text"
+    },
+    {
+      "id":"active",
+      "type":"boolean"
+    },
+    {
+      "id":"profile",
+      "type":"select",
+      "selectRef":"videoProfiles"
+    },
+    {
+      "id":"target",
+      "type":"select",
+      "selectRef":
+      {
+        "ids":["", "1", "2"],
+        "labels":["-----", "Master","Slave"]
+      }
+    }],
+  "analogCams": [
+    {
+      "id":"vin/1",
+      "label":"Fahrerkamera",
+      "active":true,
+      "profile":"profile/2",
+      "target":"2"
+    },
+    {
+      "id":"vin/2",
+      "label":"Türkamera",
+      "active":true,
+      "profile":"profile/2",
+      "target":"1"
+    },
+    {
+      "id":"vin/4",
+      "label":"Rückfahrkamera",
+      "active":true,
+      "profile":"profile/1",
+      "target":""
+    },
+    {
+      "id":"vin/6",
+      "label":"",
+      "active":false,
+      "profile":"profile/1",
+      "target":""
+    }
+  ]
+
+
+
+
+}
+
