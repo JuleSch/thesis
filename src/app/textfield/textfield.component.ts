@@ -3,10 +3,10 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 //TODO: herausfinden warum Syntax mit "!" und nicht mit {{}}
 @Component({
-  selector: 'textfield',
+  selector: 'dynamic-textfield',
   template: `<div><label>{{label}}<input [readonly]="!readonly"></label></div>`
 })
-export class Textfield {
+export class DynamicTextfield {
   @Input() label = 'Label';
   @Input() readonly: boolean;
 }
@@ -22,9 +22,9 @@ export class TextfieldComponent implements OnInit {
 
 
   @ViewChild('textfieldContainer', {read: ViewContainerRef}) textfieldContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  textfieldFactory: ComponentFactory<Textfield>;
+  textfieldFactory: ComponentFactory<DynamicTextfield>;
   constructor(private resolver: ComponentFactoryResolver){
-    this.textfieldFactory = this.resolver.resolveComponentFactory(Textfield);
+    this.textfieldFactory = this.resolver.resolveComponentFactory(DynamicTextfield);
   }
 
 

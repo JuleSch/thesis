@@ -3,11 +3,11 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 
 @Component({
-  selector: 'checkbox',
+  selector: 'dynamic-checkbox',
   template: `
     <div><label>{{checkboxLabel}}<input type="checkbox"></label></div>`
 })
-export class Checkbox {
+export class DynamicCheckbox {
   @Input() checkboxLabel = '';
 }
 
@@ -20,9 +20,9 @@ export class Checkbox {
 export class CheckboxComponent implements OnInit {
   // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
   @ViewChild('checkboxContainer', {read: ViewContainerRef}) checkboxContainer;
-  checkboxFactory: ComponentFactory<Checkbox>;
+  checkboxFactory: ComponentFactory<DynamicCheckbox>;
   constructor(private resolver: ComponentFactoryResolver){
-    this.checkboxFactory = this.resolver.resolveComponentFactory(Checkbox);
+    this.checkboxFactory = this.resolver.resolveComponentFactory(DynamicCheckbox);
   }
 
   addCheckbox(checkboxLabel: string) {

@@ -3,7 +3,7 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 import {JsonService} from '../json.service';
 
 @Component({
-  selector: 'selectbox',
+  selector: 'dynamic-selectbox',
   template: `<div>
     <label>{{selectLabel}}:
       <select>
@@ -13,7 +13,7 @@ import {JsonService} from '../json.service';
   </div>`
 })
 
-export class Selectbox {
+export class DynamicSelectbox {
   @Input() selectLabel = '';
   @Input() values: string[];
 }
@@ -26,10 +26,10 @@ export class Selectbox {
 export class SelectComponent implements OnInit {
 
   @ViewChild('selectContainer', {read: ViewContainerRef}) selectContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  selectboxFactory: ComponentFactory<Selectbox>;
+  selectboxFactory: ComponentFactory<DynamicSelectbox>;
 
   constructor(private resolver: ComponentFactoryResolver, private jsonService: JsonService) {
-  this.selectboxFactory = this.resolver.resolveComponentFactory(Selectbox);
+  this.selectboxFactory = this.resolver.resolveComponentFactory(DynamicSelectbox);
 }
 
 addSelectbox(selectLabel: string, data: any) {

@@ -3,7 +3,7 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 
 @Component({
-  selector: 'dynamicButton',
+  selector: 'dynamic-button',
   template: `
     <div>
       <button type="button">{{buttontext}}</button>

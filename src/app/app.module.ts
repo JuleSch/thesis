@@ -3,30 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { Checkbox, CheckboxComponent } from './checkbox/checkbox.component';
-import { Textfield, TextfieldComponent} from './textfield/textfield.component';
+import { DynamicCheckbox, CheckboxComponent } from './checkbox/checkbox.component';
+import { DynamicTextfield, TextfieldComponent} from './textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 
 import { JsonService} from './json.service';
-import { Selectbox, SelectComponent } from './select/select.component';
+import { DynamicSelectbox, SelectComponent } from './select/select.component';
 import { DynamicButton, ButtonComponent } from './button/button.component';
 
 @NgModule({
   entryComponents: [
-    Textfield,
-    Checkbox,
-    Selectbox,
+    DynamicTextfield,
+    DynamicCheckbox,
+    DynamicSelectbox,
     DynamicButton
   ],
   declarations: [
     AppComponent,
     CheckboxComponent,
-    Checkbox,
+    DynamicCheckbox,
     TextfieldComponent,
-    Textfield,
+    DynamicTextfield,
     TestComponent,
     SelectComponent,
-    Selectbox,
+    DynamicSelectbox,
     ButtonComponent,
     DynamicButton
   ],
