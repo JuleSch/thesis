@@ -9,12 +9,14 @@ import { TestComponent } from './test/test.component';
 
 import { JsonService} from './json.service';
 import { Selectbox, SelectComponent } from './select/select.component';
+import { DynamicButton, ButtonComponent } from './button/button.component';
 
 @NgModule({
   entryComponents: [
     Textfield,
     Checkbox,
-    Selectbox
+    Selectbox,
+    DynamicButton
   ],
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { Selectbox, SelectComponent } from './select/select.component';
     Textfield,
     TestComponent,
     SelectComponent,
-    Selectbox
+    Selectbox,
+    ButtonComponent,
+    DynamicButton
   ],
 
   imports: [

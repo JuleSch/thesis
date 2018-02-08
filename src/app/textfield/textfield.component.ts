@@ -20,7 +20,8 @@ export class Textfield {
 
 export class TextfieldComponent implements OnInit {
 
-  @ViewChild('container', {read: ViewContainerRef}) container; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
+
+  @ViewChild('textfieldContainer', {read: ViewContainerRef}) textfieldContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
   textfieldFactory: ComponentFactory<Textfield>;
   constructor(private resolver: ComponentFactoryResolver){
     this.textfieldFactory = this.resolver.resolveComponentFactory(Textfield);
@@ -28,10 +29,9 @@ export class TextfieldComponent implements OnInit {
 
 
   addTextfield(label: string, readonly: boolean){
-    const textfieldRef = this.container.createComponent(this.textfieldFactory); // mit createComponent erzeuge ist das Element
+    const textfieldRef = this.textfieldContainer.createComponent(this.textfieldFactory); // mit createComponent erzeuge ist das Element
     textfieldRef.instance.label = label;
     textfieldRef.instance.readonly = readonly;
-console.log(readonly);
   }
 
   ngOnInit(){

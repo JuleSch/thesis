@@ -19,14 +19,14 @@ export class Checkbox {
 })
 export class CheckboxComponent implements OnInit {
   // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  @ViewChild('container', {read: ViewContainerRef}) container;
+  @ViewChild('checkboxContainer', {read: ViewContainerRef}) checkboxContainer;
   checkboxFactory: ComponentFactory<Checkbox>;
   constructor(private resolver: ComponentFactoryResolver){
     this.checkboxFactory = this.resolver.resolveComponentFactory(Checkbox);
   }
 
-  addCheckbox(checkboxLabel: string){
-    const checkboxRef = this.container.createComponent(this.checkboxFactory); // mit createComponent erzeuge ich das Element
+  addCheckbox(checkboxLabel: string) {
+    const checkboxRef = this.checkboxContainer.createComponent(this.checkboxFactory); // mit createComponent erzeuge ich das Element
     checkboxRef.instance.checkboxLabel = checkboxLabel;
 
   }

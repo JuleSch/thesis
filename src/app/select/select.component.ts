@@ -25,7 +25,7 @@ export class Selectbox {
 })
 export class SelectComponent implements OnInit {
 
-  @ViewChild('container', {read: ViewContainerRef}) container; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
+  @ViewChild('selectContainer', {read: ViewContainerRef}) selectContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
   selectboxFactory: ComponentFactory<Selectbox>;
 
   constructor(private resolver: ComponentFactoryResolver, private jsonService: JsonService) {
@@ -33,7 +33,7 @@ export class SelectComponent implements OnInit {
 }
 
 addSelectbox(selectLabel: string, data: any) {
-  const selectboxRef = this.container.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
+  const selectboxRef = this.selectContainer.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
   selectboxRef.instance.selectLabel = selectLabel;
   selectboxRef.instance.values = data;
 
