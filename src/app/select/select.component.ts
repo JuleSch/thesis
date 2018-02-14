@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@angular/core';
-import {JsonService} from '../services/json.service';
+import {FileService} from '../services/file.service';
 
 @Component({
   selector: 'dynamic-selectbox',
@@ -28,21 +28,20 @@ export class SelectComponent implements OnInit {
   @ViewChild('selectContainer', {read: ViewContainerRef}) selectContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
   selectboxFactory: ComponentFactory<DynamicSelectbox>;
 
-  constructor(private resolver: ComponentFactoryResolver, private jsonService: JsonService) {
-  this.selectboxFactory = this.resolver.resolveComponentFactory(DynamicSelectbox);
-}
+  constructor(private resolver: ComponentFactoryResolver, private fileService: FileService) {
+    this.selectboxFactory = this.resolver.resolveComponentFactory(DynamicSelectbox);
+  }
 
-addSelectbox(selectLabel: string, data: any) {
-  const selectboxRef = this.selectContainer.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
-  selectboxRef.instance.selectLabel = selectLabel;
-  selectboxRef.instance.values = data;
+  addSelectbox(selectLabel: string, data: any) {
+    const selectboxRef = this.selectContainer.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
+    selectboxRef.instance.selectLabel = selectLabel;
+    selectboxRef.instance.values = data;
 
-}
+  }
 
-ngOnInit() {
+  ngOnInit() {
+    this.fileService.getFile('/assets/test.json').subscribe(data => this.addSelectbox('Hier die Box', data));
+    }
 
-  this.jsonService.getJson('/assets/test.json').subscribe(data => this.addSelectbox('Hier die Box', data));
+  }
 
-}
-
-}

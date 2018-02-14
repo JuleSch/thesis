@@ -8,10 +8,11 @@ import { DynamicCheckbox, CheckboxComponent } from './checkbox/checkbox.componen
 import { DynamicTextfield, TextfieldComponent} from './textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 
-import { JsonService} from './services/json.service';
 import { DynamicSelectbox, SelectComponent } from './select/select.component';
 import { DynamicButton, ButtonComponent } from './button/button.component';
-import { DynamicTable, TableComponent } from './table/table.component';
+import { DynamicTableHeader, DynamicTableData, TableComponent } from './table/table.component';
+
+import { FileService } from './services/file.service';
 
 @NgModule({
   entryComponents: [
@@ -19,7 +20,8 @@ import { DynamicTable, TableComponent } from './table/table.component';
     DynamicCheckbox,
     DynamicSelectbox,
     DynamicButton,
-    DynamicTable
+    DynamicTableHeader,
+    DynamicTableData
   ],
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { DynamicTable, TableComponent } from './table/table.component';
     ButtonComponent,
     DynamicButton,
     TableComponent,
-    DynamicTable
+    DynamicTableHeader,
+    DynamicTableData
   ],
 
   imports: [
@@ -41,7 +44,10 @@ import { DynamicTable, TableComponent } from './table/table.component';
     HttpClientModule,
     Ng2SmartTableModule
   ],
-  providers: [JsonService],
+  providers: [
+    FileService,
+    TableComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

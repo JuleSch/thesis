@@ -3,14 +3,13 @@ import {HttpClient} from '@angular/common/http';
 //
 
 
-
 @Injectable()
-export class JsonService {
+export class FileService {
 
   constructor(private http: HttpClient) {
   }
 
-  getJson(filepath: string) {
+  getFile(filepath: string) {
     return this.http.get(filepath);
   }
 
@@ -18,5 +17,3 @@ export class JsonService {
 
 
 }
-
-
