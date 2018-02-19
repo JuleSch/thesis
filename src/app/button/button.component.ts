@@ -33,7 +33,7 @@ export class ButtonComponent implements OnInit {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.addButton('Klick mich!');
     // this.container.remove(this.container.length - 1); --> löscht die letzte Checkbox
     // mit der Methode "detach" kann man die Komponente erstmal aus dem DOM entfernen, aber zu einem späteren zeitpunkt mit der insert-Methode wieder einfügen.

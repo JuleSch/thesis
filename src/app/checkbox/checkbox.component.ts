@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild} from '@angular/core';
+﻿import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@angular/core';
 
 

@@ -15,7 +15,7 @@ import {FileService} from '../services/file.service';
 
 export class DynamicSelectbox {
   @Input() selectLabel = '';
-  @Input() values: string[];
+  @Input() values: any;
 }
 
 @Component({
@@ -35,7 +35,7 @@ export class SelectComponent implements OnInit {
   addSelectbox(selectLabel: string, data: any) {
     const selectboxRef = this.selectContainer.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
     selectboxRef.instance.selectLabel = selectLabel;
-    selectboxRef.instance.values = data;
+    selectboxRef.instance.values = data.test;
 
   }
 

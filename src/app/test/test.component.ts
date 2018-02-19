@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component,  OnInit} from '@angular/core';
 import { FileService} from '../services/file.service';
 import { TableComponent} from '../table/table.component';
 
@@ -9,7 +9,7 @@ import { TableComponent} from '../table/table.component';
 
 
 export class TestComponent implements OnInit{
-  table: TableComponent;
+  table:  TableComponent;
 
 
   constructor(private fileService: FileService) {}
