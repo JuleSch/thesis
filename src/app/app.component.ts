@@ -22,9 +22,9 @@ export class AppComponent implements OnInit {
      da ich
      1. das einzelne Element einer anderen Klasse nicht addressieren kann und
      2. eh das Erzeugen des ganzen Templates möchte.*/
-  @ViewChild((ButtonComponent), {read: ViewContainerRef}) buttonContainer: ViewContainerRef;
+  @ViewChild((ButtonComponent), {read: ViewContainerRef}) buttonContainer;
   // Hier das gleiche für eine Tabelle.
-  @ViewChild((TableComponent), {read: ViewContainerRef}) tableContainer: ViewContainerRef;
+  @ViewChild((TableComponent), {read: ViewContainerRef}) tableContainer;
 
   // Im Constructor muss ich Objekte der TableComponent und ButtonComponent erzeugen.
   // TODO: Herausfinden, warum ich die Objekte der Klassen nicht auch außerhalb definieren kann.
