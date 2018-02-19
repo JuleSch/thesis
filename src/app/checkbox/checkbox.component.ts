@@ -3,38 +3,30 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 
 @Component({
-  selector: 'dynamic-checkbox',
-  template: `
-    <div><label>{{checkboxLabel}}<input type="checkbox"></label></div>`
-})
-export class DynamicCheckbox {
-  @Input() checkboxLabel = '';
-}
-
-
-@Component({
   selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
+  template: `<div #checkceck>
+    <label>{{checkboxLabel}}<input type="checkbox"></label>
+    </div>`,
   styleUrls: ['./checkbox.component.css']
 })
+
 export class CheckboxComponent implements OnInit {
+  @Input() checkboxLabel = '';
+
   // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  @ViewChild('checkboxContainer', {read: ViewContainerRef}) checkboxContainer;
-  checkboxFactory: ComponentFactory<DynamicCheckbox>;
+  // @ViewChild('checkboxContainer', {read: ViewContainerRef}) checkboxContainer;
+  checkboxFactory: ComponentFactory<CheckboxComponent>;
   constructor(private resolver: ComponentFactoryResolver){
-    this.checkboxFactory = this.resolver.resolveComponentFactory(DynamicCheckbox);
+    this.checkboxFactory = this.resolver.resolveComponentFactory(CheckboxComponent);
   }
 
-  addCheckbox(checkboxLabel: string) {
-    const checkboxRef = this.checkboxContainer.createComponent(this.checkboxFactory); // mit createComponent erzeuge ich das Element
+  addCheckbox(checkboxLabel: string, container: ViewContainerRef) {
+    const checkboxRef = container.createComponent(this.checkboxFactory); // mit createComponent erzeuge ich das Element
     checkboxRef.instance.checkboxLabel = checkboxLabel;
 
   }
 
-  ngOnInit(){
-    this.addCheckbox('Hier eine Checkbox');
-    // this.container.remove(this.container.length - 1); --> löscht die letzte Checkbox
-    // mit der Methode "detach" kann man die Komponente erstmal aus dem DOM entfernen, aber zu einem späteren zeitpunkt mit der insert-Methode wieder einfügen.
+  ngOnInit() {
 
   }
 

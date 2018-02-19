@@ -2,10 +2,11 @@ import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {FileService} from './services/file.service';
 import {TableComponent} from './table/table.component';
 import {ButtonComponent} from './button/button.component';
+import {CheckboxComponent} from './checkbox/checkbox.component';
 
 @Component({
   // Ich habe hier die provider definiert und nicht in app.module, weil die Componenten nicht für alle Klassen benutzt werden sollen.
-  providers: [ButtonComponent, TableComponent],
+  providers: [ButtonComponent, TableComponent, CheckboxComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -25,15 +26,20 @@ export class AppComponent implements OnInit {
   @ViewChild((ButtonComponent), {read: ViewContainerRef}) buttonContainer;
   // Hier das gleiche für eine Tabelle.
   @ViewChild((TableComponent), {read: ViewContainerRef}) tableContainer;
+  // Hier das gleiche für eine Checkbox.
+  @ViewChild((CheckboxComponent), {read: ViewContainerRef}) checkboxContainer: ViewContainerRef;
 
   // Im Constructor muss ich Objekte der TableComponent und ButtonComponent erzeugen.
   // TODO: Herausfinden, warum ich die Objekte der Klassen nicht auch außerhalb definieren kann.
-  constructor(private fileService: FileService,  private tableComponent: TableComponent, private buttonComponent: ButtonComponent) {}
+  constructor(private fileService: FileService,  private tableComponent: TableComponent, private buttonComponent: ButtonComponent, private checkboxComponent: CheckboxComponent) {}
 
   ngOnInit() {
     // Bei diesem Aufruf der Buttenmethode übergebe ich den Buttontext und mein ViewContainerRef-Objekt als Parameter.
     this.buttonComponent.addButton('Hallo', this.buttonContainer);
     this.processData();
+    console.log('Hier' , this.checkboxContainer);
+
+    this.checkboxComponent.addCheckbox('Tralalala', this.checkboxContainer);
   }
 
   // Ich lese 3 Files aus, die ich anschließend als ein Array mit drei JS-Objekten im Callback zurückbekomme.
