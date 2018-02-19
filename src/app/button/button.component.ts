@@ -3,40 +3,38 @@ import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@ang
 
 
 @Component({
-  selector: 'dynamic-button',
-  template: `
-    <div>
-      <button type="button">{{buttontext}}</button>
-    </div>`
-})
-export class DynamicButton {
-  @Input() buttontext: string;
-}
-
-
-@Component({
   selector: 'app-button',
-  templateUrl: './button.component.html',
+  template: `
+    <button #buttonContainer type="button">
+      {{buttontext}}
+    </button>`,
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent implements OnInit {
-  // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  @ViewChild('buttonContainer', {read: ViewContainerRef}) buttonContainer;
-  buttonFactory: ComponentFactory<DynamicButton>;
+
+  // Variablendeklaration für den Buttontext, der im Template benutzt wird.
+  @Input() buttontext = '';
+  // ComponentFactory für die Klasse ButtonComponent.
+  buttonFactory: ComponentFactory<ButtonComponent>;
+
   constructor(private resolver: ComponentFactoryResolver) {
-    this.buttonFactory = this.resolver.resolveComponentFactory(DynamicButton);
+    /* Mit der Klasse ComponentFactoryResolver, habe ich die Möglichkeit, über buttonFactory Zugriff auf das Template von ButtonComponent
+    zu bekommen. */
+    this.buttonFactory = this.resolver.resolveComponentFactory(ButtonComponent);
   }
 
-  addButton(buttontext: string) {
-    const buttonRef = this.buttonContainer.createComponent(this.buttonFactory); // mit createComponent erzeuge ich das Element
+  // addButton erwartet einen Buttontext und ein ViewContainerRef-Objekt
+  public addButton(buttontext: string, container: ViewContainerRef) {
+    /* Das ViewContainerRef-Objekt ist ein Objekt, dass die Referenzierung auf ein bestimmtes Childelement beinhaltet.
+       Also an die Stelle, an die in diesem Fall der Button erzeugt werden soll.
+       Mit createComponent erzeuge ich das Button-Element*/
+    const buttonRef = container.createComponent(this.buttonFactory);
+    // mit "instance" übergebe ich mein Input an das Element.
     buttonRef.instance.buttontext = buttontext;
-
   }
+
 
   ngOnInit() {
-    this.addButton('Klick mich!');
-    // this.container.remove(this.container.length - 1); --> löscht die letzte Checkbox
-    // mit der Methode "detach" kann man die Komponente erstmal aus dem DOM entfernen, aber zu einem späteren zeitpunkt mit der insert-Methode wieder einfügen.
 
   }
 

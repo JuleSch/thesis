@@ -1,7 +1,4 @@
-import {Component, ComponentFactory, ComponentFactoryResolver, Injectable, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {FileService} from '../services/file.service';
-
-
+import {Component, ComponentFactory, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 
 
 @Component({
@@ -29,30 +26,34 @@ import {FileService} from '../services/file.service';
 
 export class TableComponent implements OnInit {
 
+  // Variablendeklaration für die Tabellendaten, die im Template benutzt werden.
   @Input() tableData = [] ;
   @Input() tableHeader = [];
-  @ViewChild('tableContainer', {read: ViewContainerRef}) tableContainer;
+  // ComponentFactory für die Klasse TableComponent.
   tableFactory: ComponentFactory<TableComponent>;
 
-
-  constructor(private resolver: ComponentFactoryResolver, private fileService: FileService) {
+  constructor(private resolver: ComponentFactoryResolver) {
+    /* Mit der Klasse ComponentFactoryResolver, habe ich die Möglichkeit, über tableFactory Zugriff auf das Template von TableComponent
+    zu bekommen. */
     this.tableFactory = this.resolver.resolveComponentFactory(TableComponent);
   }
 
-  addTable(data: any) {
-    //console.log(data.attributes);
-
-    const tableRef = this.tableContainer.createComponent(this.tableFactory); // mit createComponent wird das Element erz.
-
-    tableRef.instance.tableHeader = data.attributes;
-    tableRef.instance.tableData = data.analogCams;
-
+  // addTable erwartet Daten und ein ViewContainerRef-Objekt
+  addTable(data: any, viewContainerRef: ViewContainerRef) {
+    /* Das ViewContainerRef-Objekt ist ein Objekt, dass die Referenzierung auf ein bestimmtes Childelement beinhaltet.
+           Also an die Stelle, an die in diesem Fall die Tabelle erzeugt werden soll.
+           Mit createComponent erzeuge ich das Tabellen-Element*/
+    const tableRef = viewContainerRef.createComponent(this.tableFactory);
+    /* mit "instance" übergebe ich mein Input an das Element.
+    In diesem Fall das erste Objekt des Arrays für die Header und das 2. für die Daten.
+    Das dritte werde ich später für options der Selectboxen in der Tabelle benutzen,
+    */
+    tableRef.instance.tableHeader = data[0].attributes;
+    tableRef.instance.tableData = data[1].analogCams;
   }
 
 
   ngOnInit() {
-    // TODO: kann man das noch optimieren???
-    this.fileService.getFile('/assets/table.json').subscribe(data => this.addTable(data));
   }
 
 }

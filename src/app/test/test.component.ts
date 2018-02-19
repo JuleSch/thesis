@@ -1,6 +1,7 @@
 import {Component,  OnInit} from '@angular/core';
 import { FileService} from '../services/file.service';
 import { TableComponent} from '../table/table.component';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-test',
@@ -9,20 +10,13 @@ import { TableComponent} from '../table/table.component';
 
 
 export class TestComponent implements OnInit{
-  table:  TableComponent;
 
-
-  constructor(private fileService: FileService) {}
+  constructor(private fileService: FileService, private buttonComponent: ButtonComponent) {}
 
   ngOnInit() {
-    this.addTable();
+    // this.buttonComponent.addButton('Hallo');
   }
 
-
-  addTable() {
-    //this.fileService.getFile('/assets/table.json').subscribe(data => this.table.addTableHeader(data));
-    //this.fileService.getFile('/assets/tableData.json').subscribe(data => this.table.addTableData(data));
-  }
 }
 
 

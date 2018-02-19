@@ -8,7 +8,7 @@ import { DynamicTextfield, TextfieldComponent} from './textfield/textfield.compo
 import { TestComponent } from './test/test.component';
 
 import { DynamicSelectbox, SelectComponent } from './select/select.component';
-import { DynamicButton, ButtonComponent } from './button/button.component';
+import {  ButtonComponent } from './button/button.component';
 import {  TableComponent } from './table/table.component';
 
 import { FileService } from './services/file.service';
@@ -18,7 +18,7 @@ import { FileService } from './services/file.service';
     DynamicTextfield,
     DynamicCheckbox,
     DynamicSelectbox,
-    DynamicButton,
+    ButtonComponent,
     TableComponent
   ],
   declarations: [
@@ -31,8 +31,7 @@ import { FileService } from './services/file.service';
     SelectComponent,
     DynamicSelectbox,
     ButtonComponent,
-    DynamicButton,
-    TableComponent,
+    TableComponent
   ],
 
   imports: [
@@ -41,7 +40,7 @@ import { FileService } from './services/file.service';
   ],
   providers: [
     FileService,
-    TableComponent
+
   ],
   bootstrap: [AppComponent]
 })
