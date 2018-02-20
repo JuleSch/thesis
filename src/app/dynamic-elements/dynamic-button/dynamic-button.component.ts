@@ -3,7 +3,6 @@ import {ButtonComponent} from '../../elements/button/button.component';
 
 
 @Component({
-
   selector: 'app-dynamic-button',
   template: `
     <button (click)="buttonKlick()">Ich erzeuge multiple Buttons</button>

@@ -3,6 +3,7 @@ import {DynamicButtonComponent} from '../dynamic-elements/dynamic-button/dynamic
 import {DynamicCheckboxComponent} from '../dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
 import {DynamicTableComponent} from '../dynamic-elements/dynamic-table/dynamic-table.component';
 import {FileService} from '../services/file.service';
+import {DynamicTextfieldComponent} from '../dynamic-elements/dynamic-textfield/dynamic-textfield.component';
 
 
 
@@ -10,7 +11,8 @@ import {FileService} from '../services/file.service';
   providers: [
     DynamicButtonComponent,
     DynamicCheckboxComponent,
-    DynamicTableComponent
+    DynamicTableComponent,
+    DynamicTextfieldComponent
   ],
   selector: 'app-test',
   template: `<div>
@@ -22,12 +24,14 @@ export class TestComponent implements OnInit {
   constructor(private dynamicButton: DynamicButtonComponent,
               private dynamicCheckbox: DynamicCheckboxComponent,
               private dynamicTable: DynamicTableComponent,
+              private dynamicTextfield: DynamicTextfieldComponent,
               private viewContainerRef: ViewContainerRef,
               private fileService: FileService) {}
 
   ngOnInit() {
-    this.dynamicButton.createButton(this.viewContainerRef, 'Klick mich');
-    this.dynamicCheckbox.createCheckbox('Ich bin eine Checkbox', false, this.viewContainerRef, );
+    this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
+    this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false, this.viewContainerRef, );
+    this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
   }
 
   file1 = '/assets/table.json';

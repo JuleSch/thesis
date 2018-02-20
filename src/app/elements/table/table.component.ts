@@ -4,7 +4,7 @@ import {Component, Input,} from '@angular/core';
 @Component({
   selector: 'app-table',
   template: `
-    <table #tableContainer>
+    <table>
       <thead>
       <th *ngFor="let m of tableHeader">{{m.id}}</th>
       </thead>

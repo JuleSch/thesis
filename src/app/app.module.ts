@@ -4,30 +4,30 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CheckboxComponent } from './elements/checkbox/checkbox.component';
-import { DynamicTextfield, TextfieldComponent} from './elements/textfield/textfield.component';
+import { TextfieldComponent} from './elements/textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 import { DynamicSelectbox, SelectComponent } from './elements/select/select.component';
-import {  ButtonComponent } from './elements/button/button.component';
-import {  TableComponent } from './elements/table/table.component';
+import { ButtonComponent } from './elements/button/button.component';
+import { TableComponent } from './elements/table/table.component';
 import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
 
 import{ FileService } from './services/file.service';
 import { DynamicCheckboxComponent } from './dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-table.component';
+import { DynamicTextfieldComponent } from './dynamic-elements/dynamic-textfield/dynamic-textfield.component';
 
 @NgModule({
   entryComponents: [
-    DynamicTextfield,
     DynamicSelectbox,
     CheckboxComponent,
     ButtonComponent,
     TableComponent,
+    TextfieldComponent
   ],
   declarations: [
     AppComponent,
     CheckboxComponent,
     TextfieldComponent,
-    DynamicTextfield,
     TestComponent,
     SelectComponent,
     DynamicSelectbox,
@@ -35,7 +35,8 @@ import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-
     TableComponent,
     DynamicButtonComponent,
     DynamicCheckboxComponent,
-    DynamicTableComponent
+    DynamicTableComponent,
+    DynamicTextfieldComponent
   ],
 
   imports: [
@@ -46,7 +47,8 @@ import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-
     FileService,
     ButtonComponent,
     CheckboxComponent,
-    TableComponent
+    TableComponent,
+    TextfieldComponent
   ],
   bootstrap: [AppComponent]
 })

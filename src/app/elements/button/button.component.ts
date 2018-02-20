@@ -4,9 +4,10 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-button',
   template: `
-    <button #buttonContainer type="button">
+    <button type="button">
       {{buttontext}}
-    </button>`,
+    </button>
+  <div></div>`,
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
