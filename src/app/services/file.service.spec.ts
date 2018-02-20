@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FileService } from './services/file.service';
+import { FileService } from './file.service';
 
 describe('FileService', () => {
   beforeEach(() => {

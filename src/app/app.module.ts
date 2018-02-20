@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
+import {NgModule, ViewContainerRef} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import { DynamicTextfield, TextfieldComponent} from './textfield/textfield.component';
+import { CheckboxComponent } from './elements/checkbox/checkbox.component';
+import { DynamicTextfield, TextfieldComponent} from './elements/textfield/textfield.component';
 import { TestComponent } from './test/test.component';
+import { DynamicSelectbox, SelectComponent } from './elements/select/select.component';
+import {  ButtonComponent } from './elements/button/button.component';
+import {  TableComponent } from './elements/table/table.component';
+import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
 
-import { DynamicSelectbox, SelectComponent } from './select/select.component';
-import {  ButtonComponent } from './button/button.component';
-import {  TableComponent } from './table/table.component';
-
-import { FileService } from './services/file.service';
+import{ FileService } from './services/file.service';
+import { DynamicCheckboxComponent } from './dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
+import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-table.component';
 
 @NgModule({
   entryComponents: [
@@ -19,7 +21,7 @@ import { FileService } from './services/file.service';
     DynamicSelectbox,
     CheckboxComponent,
     ButtonComponent,
-    TableComponent
+    TableComponent,
   ],
   declarations: [
     AppComponent,
@@ -30,7 +32,10 @@ import { FileService } from './services/file.service';
     SelectComponent,
     DynamicSelectbox,
     ButtonComponent,
-    TableComponent
+    TableComponent,
+    DynamicButtonComponent,
+    DynamicCheckboxComponent,
+    DynamicTableComponent
   ],
 
   imports: [
@@ -39,7 +44,9 @@ import { FileService } from './services/file.service';
   ],
   providers: [
     FileService,
-
+    ButtonComponent,
+    CheckboxComponent,
+    TableComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -35,7 +35,7 @@ export class TextfieldComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.addTextfield('neues Label', true);
+   // this.addTextfield('neues Label', true);
     // this.container.remove(this.container.length - 1); --> löscht das letzte Textfeld
     // mit der Mtehode "detach" kann man die Komponente erstmal aus dem DOM entfernen, aber zu einem späteren zeitpunkt mit der insert-Methode wieder einfügen.
 

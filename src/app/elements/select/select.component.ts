@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@angular/core';
-import {FileService} from '../services/file.service';
+import {FileService} from '../../services/file.service';
 
 @Component({
   selector: 'dynamic-selectbox',
