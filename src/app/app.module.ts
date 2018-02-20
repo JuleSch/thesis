@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CheckboxComponent } from './elements/checkbox/checkbox.component';
 import { TextfieldComponent} from './elements/textfield/textfield.component';
 import { TestComponent } from './test/test.component';
-import { DynamicSelectbox, SelectComponent } from './elements/select/select.component';
+import { SelectComponent } from './elements/select/select.component';
 import { ButtonComponent } from './elements/button/button.component';
 import { TableComponent } from './elements/table/table.component';
 import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
@@ -15,14 +15,15 @@ import{ FileService } from './services/file.service';
 import { DynamicCheckboxComponent } from './dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-table.component';
 import { DynamicTextfieldComponent } from './dynamic-elements/dynamic-textfield/dynamic-textfield.component';
+import { DynamicSelectComponent } from './dynamic-elements/dynamic-select/dynamic-select.component';
 
 @NgModule({
   entryComponents: [
-    DynamicSelectbox,
     CheckboxComponent,
     ButtonComponent,
     TableComponent,
-    TextfieldComponent
+    TextfieldComponent,
+    SelectComponent
   ],
   declarations: [
     AppComponent,
@@ -30,13 +31,13 @@ import { DynamicTextfieldComponent } from './dynamic-elements/dynamic-textfield/
     TextfieldComponent,
     TestComponent,
     SelectComponent,
-    DynamicSelectbox,
     ButtonComponent,
     TableComponent,
     DynamicButtonComponent,
     DynamicCheckboxComponent,
     DynamicTableComponent,
-    DynamicTextfieldComponent
+    DynamicTextfieldComponent,
+    DynamicSelectComponent
   ],
 
   imports: [
@@ -48,7 +49,8 @@ import { DynamicTextfieldComponent } from './dynamic-elements/dynamic-textfield/
     ButtonComponent,
     CheckboxComponent,
     TableComponent,
-    TextfieldComponent
+    TextfieldComponent,
+    SelectComponent
   ],
   bootstrap: [AppComponent]
 })

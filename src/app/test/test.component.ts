@@ -4,6 +4,7 @@ import {DynamicCheckboxComponent} from '../dynamic-elements/dynamic-checkbox/dyn
 import {DynamicTableComponent} from '../dynamic-elements/dynamic-table/dynamic-table.component';
 import {FileService} from '../services/file.service';
 import {DynamicTextfieldComponent} from '../dynamic-elements/dynamic-textfield/dynamic-textfield.component';
+import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic-select.component';
 
 
 
@@ -12,7 +13,8 @@ import {DynamicTextfieldComponent} from '../dynamic-elements/dynamic-textfield/d
     DynamicButtonComponent,
     DynamicCheckboxComponent,
     DynamicTableComponent,
-    DynamicTextfieldComponent
+    DynamicTextfieldComponent,
+    DynamicSelectComponent
   ],
   selector: 'app-test',
   template: `<div>
@@ -25,6 +27,7 @@ export class TestComponent implements OnInit {
               private dynamicCheckbox: DynamicCheckboxComponent,
               private dynamicTable: DynamicTableComponent,
               private dynamicTextfield: DynamicTextfieldComponent,
+              private dynamicSelect: DynamicSelectComponent,
               private viewContainerRef: ViewContainerRef,
               private fileService: FileService) {}
 
@@ -32,6 +35,8 @@ export class TestComponent implements OnInit {
     this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
     this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false, this.viewContainerRef, );
     this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
+
+    this.processOneDataFile(this.file3);
   }
 
   file1 = '/assets/table.json';
@@ -42,14 +47,14 @@ export class TestComponent implements OnInit {
   buttonClick($event) {
 
     if (this.bool) {
-      this.processData(this.file1, this.file2, this.file3);
+      this.processThreeDataFiles(this.file1, this.file2, this.file3);
       this.bool = false;
     }
   }
 
-  // Ich lese 3 Files aus, die ich anschließend als ein Array mit drei JS-Objekten im Callback zurückbekomme.
-  // Dieses übergebe ich dann als Parameter in einem Methodenaufruf.
-  processData(File1: string, File2: string, File3: string) {
+// Ich lese 3 Files aus, die ich anschließend als ein Array mit drei JS-Objekten im Callback zurückbekomme.
+// Dieses übergebe ich dann als Parameter in einem Methodenaufruf.
+  processThreeDataFiles(File1: string, File2: string, File3: string) {
     let promiseOne = new Promise((resolve, reject) => {
       this.fileService.getFile(File1).subscribe(data => resolve(data));
     });
@@ -70,6 +75,17 @@ export class TestComponent implements OnInit {
     );
   }
 
+
+  processOneDataFile(File: string) {
+    let promise = new Promise((resolve, reject) => {
+      this.fileService.getFile(File).subscribe(data => resolve(data));
+    });
+
+    Promise.all([promise]).then((values) => {
+      console.log(values);
+      this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
+    });
+  }
 }
 
 

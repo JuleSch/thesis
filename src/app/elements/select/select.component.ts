@@ -1,47 +1,31 @@
-import {Component, OnInit, Input, ViewChild} from '@angular/core';
-import {ViewContainerRef, ComponentFactory, ComponentFactoryResolver} from '@angular/core';
-import {FileService} from '../../services/file.service';
+import {Component, Input} from '@angular/core';
+
 
 @Component({
-  selector: 'dynamic-selectbox',
+  selector: 'app-select',
   template: `<div>
     <label>{{selectLabel}}:
       <select>
         <option *ngFor="let v of values" [value]="v">{{v.id}}</option> <!-- ngValue unterstützt im Vergleich zu value alle Datentypen, value nur strings-->
       </select>
     </label>
-  </div>`
-})
-
-export class DynamicSelectbox {
-  @Input() selectLabel = '';
-  @Input() values: any;
-}
-
-@Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
+  </div>`,
   styleUrls: ['./select.component.css']
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent {
+  @Input() selectLabel = '';
+  @Input() values = [];
 
-  @ViewChild('selectContainer', {read: ViewContainerRef}) selectContainer; // @ViewChild --> Verbindung zum selector; ViewcontainerRef, denifiert es als ViewContainer
-  selectboxFactory: ComponentFactory<DynamicSelectbox>;
-
-  constructor(private resolver: ComponentFactoryResolver, private fileService: FileService) {
-    this.selectboxFactory = this.resolver.resolveComponentFactory(DynamicSelectbox);
+  constructor() {
   }
 
-  addSelectbox(selectLabel: string, data: any) {
-    const selectboxRef = this.selectContainer.createComponent(this.selectboxFactory); // mit createComponent erzeuge ist das Element
-    selectboxRef.instance.selectLabel = selectLabel;
-    selectboxRef.instance.values = data.test;
-
+  initSelectParams(selectLabel: string, data: any, ref: any) {
+    ref.instance.selectLabel = selectLabel;
+    console.log(data);
+    ref.instance.values = data.test;
   }
 
-  ngOnInit() {
-    this.fileService.getFile('/assets/test.json').subscribe(data => this.addSelectbox('Hier die Box', data));
-    }
+    //
 
   }
 

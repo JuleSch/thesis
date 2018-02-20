@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
 import {TableComponent} from '../../elements/table/table.component';
 
 @Component({
@@ -6,6 +6,8 @@ import {TableComponent} from '../../elements/table/table.component';
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.css']
 })
+
+@Injectable()
 export class DynamicTableComponent  {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
