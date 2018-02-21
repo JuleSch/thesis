@@ -11,7 +11,7 @@ import {Component, Input } from '@angular/core';
       <tbody>
       <tr *ngFor="let m of tableData; let i = index">
         <td>{{m.id}}</td>
-        <td><input value={{m.label}}></td>
+        <td contenteditable='true' (input)="onRowClick($event, i, m.label)">{{m.label}}</td>
         <td *ngIf="m.active; else check"><input type="checkbox" checked></td>
         <ng-template #check><input type="checkbox"></ng-template>
         <td>
@@ -44,6 +44,18 @@ export class TableComponent {
   nextID = 9;
   showJson = false;
   data: any;
+  newString = '';
+
+  onRowClick(event, index, value) {
+    this.newString = '';
+    this.newString += event.target.textContent;
+    // this.tableData[index].replace('label', 'test');
+
+    console.log(this.tableData[index]);
+    console.log('NewString: ' , this.newString);
+    console.log('tableLabel: ' , this.tableData[index].label);
+
+  }
 
   removeTableRow(index) {
     this.tableData.splice(index, 1);
