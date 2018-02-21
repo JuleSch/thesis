@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, } from '@angular/core';
+import {Component, Input } from '@angular/core';
 
 
 @Component({
@@ -23,6 +23,7 @@ import {Component, Input, ViewChild, } from '@angular/core';
         <td>{{m.target}}</td>
         <td><button type="button" (click)="removeTableRow(i)">Löschen</button></td>
       </tr>
+      <button (click)="updateTable()">addRow</button>
       </tbody>
     </table>`,
   styleUrls: ['./table.component.css']
@@ -31,16 +32,29 @@ import {Component, Input, ViewChild, } from '@angular/core';
 
 export class TableComponent {
 
+
   // Variablendeklaration für die Tabellendaten, die im Template benutzt werden.
   @Input() tableData = [] ;
   @Input() tableHeader = [];
   @Input() tableSelectData = [];
   @Input() tableSelectDefault = [];
 
+  nextID = 9;
 
   removeTableRow(index) {
     this.tableData.splice(index, 1);
   }
+
+ updateTable() {
+   this.tableData.push({
+     "id":this.getId()
+   });
+ }
+
+getId() {
+    this.nextID++;
+    return this.nextID;
+}
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
   initTableParams(data: any, ref: any) {
@@ -53,7 +67,7 @@ export class TableComponent {
     ref.instance.tableSelectData = data[2].test;
     ref.instance.tableSelectDefault = data[3].default;
 
-
-
   }
+
+
 }

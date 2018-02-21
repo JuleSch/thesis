@@ -11,6 +11,7 @@ import {FileService} from '../services/file.service';
   selector: 'app-test-table',
   template: `<div>
     <button (click)="buttonClick()">Ich erzeuge eine Tabelle</button>
+
   </div>`
 })
 
@@ -57,9 +58,10 @@ export class TestTableComponent {
   buttonClick($event) {
     if (this.bool) {
       this.processThreeDataFiles(this.file1, this.file2, this.file3, this.file4);
-      this.bool = false;
+     this.bool = false;
     }
   }
+
 
 
 }
