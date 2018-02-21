@@ -1,0 +1,16 @@
+{
+  "default": [
+  {
+    "id": 1,
+    "label": "Erster"
+  },
+  {
+    "id": 2,
+    "label": "Zweiter"
+  },
+  {
+    "id": 3,
+    "label": "Dritter"
+  }
+]
+}

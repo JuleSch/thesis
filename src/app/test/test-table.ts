@@ -18,6 +18,7 @@ export class TestTableComponent {
   file1 = '/assets/table.json';
   file2 = '/assets/tableData.json';
   file3 = '/assets/test.json';
+  file4 = '/assets/defaultData.json';
   bool = true;
 
   constructor(private dynamicTable: DynamicTableComponent,
@@ -29,7 +30,7 @@ export class TestTableComponent {
 // Dieses übergebe ich dann als Parameter in einem Methodenaufruf.
 
   // TODO: muss ich const nehmen? Vorteile/Nachteile zu let?
-  processThreeDataFiles(File1: string, File2: string, File3: string) {
+  processThreeDataFiles(File1: string, File2: string, File3: string, File4: string) {
     let promiseOne = new Promise((resolve, reject) => {
       this.fileService.getFile(File1).subscribe(data => resolve(data));
     });
@@ -39,9 +40,12 @@ export class TestTableComponent {
     let promiseThree = new Promise((resolve, reject) => {
       this.fileService.getFile(File3).subscribe(data => resolve(data));
     });
+    let promiseFour = new Promise((resolve, reject) => {
+      this.fileService.getFile(File4).subscribe(data => resolve(data));
+    });
 
     // Callback der 3 Files
-    Promise.all([promiseOne, promiseTwo, promiseThree]). then((values) => {
+    Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]). then((values) => {
         console.log(values);
         this.dynamicTable.createTable(values, this.viewContainerRef);
         // Hier rufe ich die Tablemethode auf und übergebe das Array und mein ViewContainerRef-Objekt der Tabelle als Parameter.
@@ -52,7 +56,7 @@ export class TestTableComponent {
 
   buttonClick($event) {
     if (this.bool) {
-      this.processThreeDataFiles(this.file1, this.file2, this.file3);
+      this.processThreeDataFiles(this.file1, this.file2, this.file3, this.file4);
       this.bool = false;
     }
   }

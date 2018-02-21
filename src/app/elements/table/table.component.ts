@@ -17,6 +17,7 @@ import {Component, Input, ViewChild,} from '@angular/core';
         <td>
           <select>
             <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
+            <option *ngFor="let v of tableSelectDefault" [value]="v">{{v.label}}</option>
           </select>
         </td>
         <td>{{m.target}}</td>
@@ -33,6 +34,7 @@ export class TableComponent {
   @Input() tableData = [] ;
   @Input() tableHeader = [];
   @Input() tableSelectData = [];
+  @Input() tableSelectDefault = [];
 
  // selectoption: 'profile/2';
 
@@ -45,7 +47,9 @@ export class TableComponent {
     ref.instance.tableHeader = data[0].attributes;
     ref.instance.tableData = data[1].analogCams;
     ref.instance.tableSelectData = data[2].test;
-    console.log('tableSelect: ' , data[2].test);
+    ref.instance.tableSelectDefault = data[3].default;
+
+
 
   }
 }
