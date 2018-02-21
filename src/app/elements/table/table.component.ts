@@ -11,7 +11,7 @@ import {Component, Input } from '@angular/core';
       <tbody>
       <tr *ngFor="let m of tableData; let i = index">
         <td>{{m.id}}</td>
-        <td>{{m.label}}</td>
+        <td><input value={{m.label}}></td>
         <td *ngIf="m.active; else check"><input type="checkbox" checked></td>
         <ng-template #check><input type="checkbox"></ng-template>
         <td>
@@ -23,9 +23,11 @@ import {Component, Input } from '@angular/core';
         <td>{{m.target}}</td>
         <td><button type="button" (click)="removeTableRow(i)">Löschen</button></td>
       </tr>
-      <button (click)="updateTable()">addRow</button>
       </tbody>
-    </table>`,
+    </table>
+    <button (click)="updateTable()">Hinzufügen</button>
+    <button (click)="changeShowJson(this.tableData)">Json</button>
+    <span *ngIf="showJson">{{ data |json }}</span>`,
   styleUrls: ['./table.component.css']
 })
 
@@ -40,21 +42,28 @@ export class TableComponent {
   @Input() tableSelectDefault = [];
 
   nextID = 9;
+  showJson = false;
+  data: any;
 
   removeTableRow(index) {
     this.tableData.splice(index, 1);
   }
 
- updateTable() {
-   this.tableData.push({
-     "id":this.getId()
-   });
- }
+  updateTable() {
+    this.tableData.push({
+      "id":"vin/"+ this.getId()
+    });
+  }
 
-getId() {
+  changeShowJson(data) {
+    this.showJson = this.showJson != true;
+    this.data = data;
+  }
+
+  getId() {
     this.nextID++;
     return this.nextID;
-}
+  }
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
   initTableParams(data: any, ref: any) {
