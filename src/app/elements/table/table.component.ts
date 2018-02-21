@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild,} from '@angular/core';
+import {Component, Input, ViewChild, } from '@angular/core';
 
 
 @Component({
@@ -9,7 +9,7 @@ import {Component, Input, ViewChild,} from '@angular/core';
       <th *ngFor="let m of tableHeader">{{m.id}}</th>
       </thead>
       <tbody>
-      <tr *ngFor="let m of tableData">
+      <tr *ngFor="let m of tableData; let i = index">
         <td>{{m.id}}</td>
         <td>{{m.label}}</td>
         <td *ngIf="m.active; else check"><input type="checkbox" checked></td>
@@ -21,6 +21,7 @@ import {Component, Input, ViewChild,} from '@angular/core';
           </select>
         </td>
         <td>{{m.target}}</td>
+        <td><button type="button" (click)="removeTableRow(i)">Löschen</button></td>
       </tr>
       </tbody>
     </table>`,
@@ -36,7 +37,10 @@ export class TableComponent {
   @Input() tableSelectData = [];
   @Input() tableSelectDefault = [];
 
- // selectoption: 'profile/2';
+
+  removeTableRow(index) {
+    this.tableData.splice(index, 1);
+  }
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
   initTableParams(data: any, ref: any) {
