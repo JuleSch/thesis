@@ -10,6 +10,7 @@ import { SelectComponent } from './elements/select/select.component';
 import { ButtonComponent } from './elements/button/button.component';
 import { TableComponent } from './elements/table/table.component';
 import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
+import { TestTableComponent} from './test/test-table';
 
 import{ FileService } from './services/file.service';
 import { DynamicCheckboxComponent } from './dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
@@ -37,7 +38,8 @@ import { DynamicSelectComponent } from './dynamic-elements/dynamic-select/dynami
     DynamicCheckboxComponent,
     DynamicTableComponent,
     DynamicTextfieldComponent,
-    DynamicSelectComponent
+    DynamicSelectComponent,
+    TestTableComponent
   ],
 
   imports: [

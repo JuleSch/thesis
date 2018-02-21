@@ -21,7 +21,8 @@ export class SelectComponent {
 
   initSelectParams(selectLabel: string, data: any, ref: any) {
     ref.instance.selectLabel = selectLabel;
-    console.log(data);
+    console.log(data.test);
+    console.log(selectLabel);
     ref.instance.values = data.test;
   }
 
