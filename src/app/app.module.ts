@@ -12,11 +12,13 @@ import { TableComponent } from './elements/table/table.component';
 import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
 import { TestTableComponent} from './test/test-table';
 
-import{ FileService } from './services/file.service';
 import { DynamicCheckboxComponent } from './dynamic-elements/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicTableComponent } from './dynamic-elements/dynamic-table/dynamic-table.component';
 import { DynamicTextfieldComponent } from './dynamic-elements/dynamic-textfield/dynamic-textfield.component';
 import { DynamicSelectComponent } from './dynamic-elements/dynamic-select/dynamic-select.component';
+
+import { FileService } from './services/file.service';
+
 
 @NgModule({
   entryComponents: [
@@ -28,9 +30,10 @@ import { DynamicSelectComponent } from './dynamic-elements/dynamic-select/dynami
   ],
   declarations: [
     AppComponent,
+    TestComponent,
+    TestTableComponent,
     CheckboxComponent,
     TextfieldComponent,
-    TestComponent,
     SelectComponent,
     ButtonComponent,
     TableComponent,
@@ -38,8 +41,7 @@ import { DynamicSelectComponent } from './dynamic-elements/dynamic-select/dynami
     DynamicCheckboxComponent,
     DynamicTableComponent,
     DynamicTextfieldComponent,
-    DynamicSelectComponent,
-    TestTableComponent
+    DynamicSelectComponent
   ],
 
   imports: [

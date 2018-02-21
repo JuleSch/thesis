@@ -1,4 +1,4 @@
-import {Component, Input,} from '@angular/core';
+import {Component, Input, ViewChild,} from '@angular/core';
 
 
 @Component({
@@ -11,12 +11,15 @@ import {Component, Input,} from '@angular/core';
       <tbody>
       <tr *ngFor="let m of tableData">
         <td>{{m.id}}</td>
-        <td> {{m.label}}</td>
+        <td>{{m.label}}</td>
         <td *ngIf="m.active; else check"><input type="checkbox" checked></td>
         <ng-template #check><input type="checkbox"></ng-template>
-        <td> {{m.profile}}</td>
-        <td> {{m.target}}
+        <td>
+          <select>
+            <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
+          </select>
         </td>
+        <td>{{m.target}}</td>
       </tr>
       </tbody>
     </table>`,
@@ -29,6 +32,9 @@ export class TableComponent {
   // Variablendeklaration für die Tabellendaten, die im Template benutzt werden.
   @Input() tableData = [] ;
   @Input() tableHeader = [];
+  @Input() tableSelectData = [];
+
+ // selectoption: 'profile/2';
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
   initTableParams(data: any, ref: any) {
@@ -38,5 +44,8 @@ export class TableComponent {
     */
     ref.instance.tableHeader = data[0].attributes;
     ref.instance.tableData = data[1].analogCams;
+    ref.instance.tableSelectData = data[2].test;
+    console.log('tableSelect: ' , data[2].test);
+
   }
 }

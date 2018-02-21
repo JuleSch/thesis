@@ -2,18 +2,15 @@
   "test": [
   {
     "id": 1,
-    "firstName": "Jeanette",
-    "lastName": "Penddreth"
+    "label": "profile/1"
   },
   {
     "id": 2,
-    "firstName": "Giavani",
-    "lastName": "Frediani"
+    "label": "profile/2"
   },
   {
     "id": 3,
-    "firstName": "Noell",
-    "lastName": "Bea"
+    "label": "profile/3"
   }
 ]
 }

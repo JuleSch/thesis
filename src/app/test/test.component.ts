@@ -17,9 +17,9 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
   selector: 'app-test',
   template: ``
 })
+
 export class TestComponent implements OnInit {
   file = '/assets/test.json';
-
 
   constructor(private dynamicButton: DynamicButtonComponent,
               private dynamicCheckbox: DynamicCheckboxComponent,
@@ -32,11 +32,11 @@ export class TestComponent implements OnInit {
     this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
     this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false, this.viewContainerRef, );
     this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
-
-    this.processOneDataFile(this.file);
+    this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data, this.viewContainerRef));
   }
 
 
+  /* Optional, falls ich es mal brauche.
   processOneDataFile(File: string) {
     let promise = new Promise((resolve, reject) => {
       this.fileService.getFile(File).subscribe(data => resolve(data));
@@ -46,7 +46,7 @@ export class TestComponent implements OnInit {
       console.log(values);
       this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
     });
-  }
+  }*/
 }
 
 
