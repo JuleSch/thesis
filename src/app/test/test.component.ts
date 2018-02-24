@@ -29,10 +29,10 @@ export class TestComponent implements OnInit {
               private fileService: FileService) {}
 
   ngOnInit() {
-    this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
-    this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false, this.viewContainerRef, );
-    this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
-    this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data, this.viewContainerRef));
+    // this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
+   // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
+    // this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
+    // this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data, this.viewContainerRef));
   }
 
 

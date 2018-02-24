@@ -15,7 +15,7 @@ export class DynamicTableComponent  {
               private tableComponent: TableComponent) {
   }
 
-  createTable(data: any, viewContainerRef: ViewContainerRef) {
+  createTable(data: any) {
     /* Mit der Klasse ComponentFactoryResolver, habe ich die Möglichkeit, über tableFactory Zugriff auf das Template von TableComponent
     zu bekommen. */
     const factory = this.componentFactoryResolver.resolveComponentFactory(TableComponent);

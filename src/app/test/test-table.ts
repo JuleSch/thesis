@@ -48,7 +48,7 @@ export class TestTableComponent {
     // Callback der 3 Files
     Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]). then((values) => {
         console.log(values);
-        this.dynamicTable.createTable(values, this.viewContainerRef);
+        this.dynamicTable.createTable(values);
         // Hier rufe ich die Tablemethode auf und übergebe das Array und mein ViewContainerRef-Objekt der Tabelle als Parameter.
         // this.tableComponent.addTable(values, this.tableContainer);
       }

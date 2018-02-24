@@ -4,16 +4,17 @@ import {Component, Input } from '@angular/core';
 @Component({
   selector: 'app-table',
   template: `
-    <table>
-      <thead>
+    <table class="table, table table-striped, table table-hover, mt-5">
+      <thead class="table-success">
       <th *ngFor="let m of tableHeader">{{m.id}}</th>
+      <th></th>
       </thead>
       <tbody>
       <tr *ngFor="let m of tableData; let i = index">
-        <td>{{m.id}}</td>
+        <td><i class="fas fa-video"></i> {{m.id}}</td>
         <td contenteditable='true' (input)="changeInput($event, i)">{{m.label}}</td>
         <td  *ngIf="m.active; else check"><input (click)="changeActive($event, i)" type="checkbox" checked ></td>
-        <td><ng-template #check><input (click)="changeActive($event, i)" type="checkbox"></ng-template></td>
+        <ng-template #check><td><input (click)="changeActive($event, i)" type="checkbox"></td></ng-template>
         <td>
           <select>
             <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
@@ -21,7 +22,7 @@ import {Component, Input } from '@angular/core';
           </select>
         </td>
         <td>{{m.target}}</td>
-        <td><button type="button" (click)="removeTableRow(i)">Löschen</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="removeTableRow(i)"><i class="fas fa-trash-alt"></i></button></td>
       </tr>
       </tbody>
     </table>
@@ -55,7 +56,13 @@ export class TableComponent {
   changeActive(event, index) {
     let newCheckboxStatus = event.target.checked;
     console.log(newCheckboxStatus);
-    newCheckboxStatus = !newCheckboxStatus;
+    if (newCheckboxStatus === true) {
+      newCheckboxStatus = false;
+    }
+    else {
+      newCheckboxStatus = true;
+    }
+    // newCheckboxStatus = !newCheckboxStatus;
     console.log(newCheckboxStatus);
     this.tableData[index].active = newCheckboxStatus;
   }

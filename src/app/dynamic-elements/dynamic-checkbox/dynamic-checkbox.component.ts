@@ -15,7 +15,7 @@ export class DynamicCheckboxComponent {
               private checkboxComponent: CheckboxComponent) {
   }
 
-  createCheckbox(checkBoxLabel: string, active: boolean, viewContainerRef: ViewContainerRef ) {
+  createCheckbox(checkBoxLabel: string, active: boolean) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(CheckboxComponent);
     const ref = this.viewContainerRef.createComponent(factory);
     this.checkboxComponent.initCheckboxParams(checkBoxLabel, active, ref);
