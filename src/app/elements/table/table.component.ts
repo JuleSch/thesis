@@ -11,9 +11,9 @@ import {Component, Input } from '@angular/core';
       <tbody>
       <tr *ngFor="let m of tableData; let i = index">
         <td>{{m.id}}</td>
-        <td contenteditable='true' (input)="onRowClick($event, i, m.label)">{{m.label}}</td>
-        <td *ngIf="m.active; else check"><input type="checkbox" checked></td>
-        <ng-template #check><input type="checkbox"></ng-template>
+        <td contenteditable='true' (input)="changeInput($event, i)">{{m.label}}</td>
+        <td  *ngIf="m.active; else check"><input (click)="changeActive($event, i)" type="checkbox" checked ></td>
+        <td><ng-template #check><input (click)="changeActive($event, i)" type="checkbox"></ng-template></td>
         <td>
           <select>
             <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
@@ -46,15 +46,18 @@ export class TableComponent {
   data: any;
   newString = '';
 
-  onRowClick(event, index, value) {
+  changeInput(event, index) {
     this.newString = '';
     this.newString += event.target.textContent;
-    // this.tableData[index].replace('label', 'test');
+    this.tableData[index].label = this.newString;
+  }
 
-    console.log(this.tableData[index]);
-    console.log('NewString: ' , this.newString);
-    console.log('tableLabel: ' , this.tableData[index].label);
-
+  changeActive(event, index) {
+    let newCheckboxStatus = event.target.checked;
+    console.log(newCheckboxStatus);
+    newCheckboxStatus = !newCheckboxStatus;
+    console.log(newCheckboxStatus);
+    this.tableData[index].active = newCheckboxStatus;
   }
 
   removeTableRow(index) {
