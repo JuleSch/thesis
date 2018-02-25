@@ -12,9 +12,13 @@ import {Component, Input } from '@angular/core';
       <tbody>
       <tr *ngFor="let m of tableData; let i = index">
         <td><i class="fas fa-video"></i> {{m.id}}</td>
-        <td contenteditable='true' (input)="changeInput($event, i)">{{m.label}}</td>
+        <!--Label-->
+        <td *ngIf="!inputClick; else changeText" (click)="inputClick = true">{{m.label}}</td>
+        <ng-template #changeText><td><input type="text" name="{{m.label}}" placeholder="{{m.label}}" (change)="changeInput($event, i)" (blur)="inputClick = false"></td></ng-template>
+        <!--Active-->
         <td  *ngIf="m.active; else check"><input (click)="changeActive($event, i)" type="checkbox" checked ></td>
         <ng-template #check><td><input (click)="changeActive($event, i)" type="checkbox"></td></ng-template>
+        <!--Select-->
         <td>
           <select>
             <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
@@ -45,26 +49,14 @@ export class TableComponent {
   nextID = 9;
   showJson = false;
   data: any;
-  newString = '';
+  inputClick = false;
 
   changeInput(event, index) {
-    this.newString = '';
-    this.newString += event.target.textContent;
-    this.tableData[index].label = this.newString;
+    this.tableData[index].label = event.target.value;
   }
 
   changeActive(event, index) {
-    let newCheckboxStatus = event.target.checked;
-    console.log(newCheckboxStatus);
-    if (newCheckboxStatus === true) {
-      newCheckboxStatus = false;
-    }
-    else {
-      newCheckboxStatus = true;
-    }
-    // newCheckboxStatus = !newCheckboxStatus;
-    console.log(newCheckboxStatus);
-    this.tableData[index].active = newCheckboxStatus;
+    this.tableData[index].active = event.target.checked;
   }
 
   removeTableRow(index) {
@@ -73,7 +65,8 @@ export class TableComponent {
 
   updateTable() {
     this.tableData.push({
-      "id":"vin/"+ this.getId()
+      "id":"vin/"+ this.getId(),
+      "label":"Neues Label"
     });
   }
 
