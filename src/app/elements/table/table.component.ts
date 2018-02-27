@@ -2,11 +2,10 @@ import {Component, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'app-table',
   template: `
     <table class="table, table table-striped, table table-hover, mt-5">
       <thead class="table-success">
-      <th *ngFor="let m of tableHeader">{{m.id}}</th>
+      <th *ngFor="let h of tableHeader">{{h.id}}</th>
       <th></th>
       </thead>
       <tbody>
@@ -20,14 +19,14 @@ import {Component, Input } from '@angular/core';
         <ng-template #check><td><input (click)="changeActive($event, i)" type="checkbox"></td></ng-template>
         <!--Select-->
         <td>
-          <select>
+          <select class="custom-select">
             <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile" (click)="changeSelect($event, i, v.label)">{{v.label}}</option>
             <option *ngFor="let v of tableSelectDefault" [value]="v" (click)="changeSelect($event, i, v.label)">{{v.label}}</option>
           </select>
         </td>
         <!--Target-->
         <td>
-          <select>
+          <select class="custom-select">
             <option *ngFor="let v of tableTarget" [value]="v" [selected]="v.id == m.target" (click)="changeTarget($event, i, v.id)">{{v.label}}</option>
           </select>
         </td>
@@ -35,9 +34,15 @@ import {Component, Input } from '@angular/core';
       </tr>
       </tbody>
     </table>
-    <button (click)="updateTable()">Hinzufügen</button>
-    <button (click)="changeShowJson(this.tableData)">Json</button>
-    <span *ngIf="showJson">{{ data |json }}</span>`,
+    <span class="mr-5">
+      <button class="btn btn-success" (click)="updateTable()"><i class="fas fa-plus"></i></button>
+    </span>
+    <div class="fixed-top">
+      <button class="btn btn-dark" (click)="changeShowJson(this.tableData)"><i class="fab fa-js"></i></button>
+      <div class="alert alert-warning" role="alert" *ngIf="showJson">{{ data |json }}</div>
+    </div>
+    `,
+  selector: 'app-table',
   styleUrls: ['./table.component.css']
 })
 
