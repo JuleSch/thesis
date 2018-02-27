@@ -19,7 +19,7 @@
       "label":"Rückfahrkamera",
       "active":true,
       "profile":"profile/1",
-      "target":""
+      "target":"3"
     },
     {
       "id":"vin/6",

@@ -14,7 +14,7 @@ import {Component, Input } from '@angular/core';
         <td><i class="fas fa-video"></i> {{m.id}}</td>
         <!--Label-->
         <td *ngIf="!inputClick; else changeText" (click)="inputClick = true">{{m.label}}</td>
-        <ng-template #changeText><td><input type="text" name="{{m.label}}" placeholder="{{m.label}}" (change)="changeInput($event, i)" (blur)="inputClick = false"></td></ng-template>
+        <ng-template #changeText><td><input type="text" name="{{m.label}}" value="{{m.label}}" (change)="changeInput($event, i)" (blur)="inputClick = false"></td></ng-template>
         <!--Active-->
         <td  *ngIf="m.active; else check"><input (click)="changeActive($event, i)" type="checkbox" checked ></td>
         <ng-template #check><td><input (click)="changeActive($event, i)" type="checkbox"></td></ng-template>
@@ -25,7 +25,11 @@ import {Component, Input } from '@angular/core';
             <option *ngFor="let v of tableSelectDefault" [value]="v">{{v.label}}</option>
           </select>
         </td>
-        <td>{{m.target}}</td>
+        <td>
+          <select>
+            <option *ngFor="let v of tableTarget" [value]="v" [selected]="v.id == m.target">{{v.label}}</option>
+          </select>
+        </td>
         <td><button type="button" class="btn btn-danger" (click)="removeTableRow(i)"><i class="fas fa-trash-alt"></i></button></td>
       </tr>
       </tbody>
@@ -45,6 +49,7 @@ export class TableComponent {
   @Input() tableHeader = [];
   @Input() tableSelectData = [];
   @Input() tableSelectDefault = [];
+  @Input() tableTarget = [];
 
   nextID = 9;
   showJson = false;
@@ -90,6 +95,7 @@ export class TableComponent {
     ref.instance.tableData = data[1].analogCams;
     ref.instance.tableSelectData = data[2].test;
     ref.instance.tableSelectDefault = data[3].default;
+    ref.instance.tableTarget = data[4].target;
 
   }
 

@@ -19,7 +19,7 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
 })
 
 export class TestComponent implements OnInit {
-  file = '/assets/test.json';
+  file = '/assets/profiles.json';
 
   constructor(private dynamicButton: DynamicButtonComponent,
               private dynamicCheckbox: DynamicCheckboxComponent,

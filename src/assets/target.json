@@ -1,0 +1,16 @@
+{
+  "target": [
+    {
+      "id": 1,
+      "label": "-----"
+    },
+    {
+      "id": 2,
+      "label": "Master"
+    },
+    {
+      "id": 3,
+      "label": "Slave"
+    }
+  ]
+}
