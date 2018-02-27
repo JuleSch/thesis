@@ -21,13 +21,14 @@ import {Component, Input } from '@angular/core';
         <!--Select-->
         <td>
           <select>
-            <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile">{{v.label}}</option>
-            <option *ngFor="let v of tableSelectDefault" [value]="v">{{v.label}}</option>
+            <option *ngFor="let v of tableSelectData" [value]="v" [selected]="v.label == m.profile" (click)="changeSelect($event, i, v.label)">{{v.label}}</option>
+            <option *ngFor="let v of tableSelectDefault" [value]="v" (click)="changeSelect($event, i, v.label)">{{v.label}}</option>
           </select>
         </td>
+        <!--Target-->
         <td>
           <select>
-            <option *ngFor="let v of tableTarget" [value]="v" [selected]="v.id == m.target">{{v.label}}</option>
+            <option *ngFor="let v of tableTarget" [value]="v" [selected]="v.id == m.target" (click)="changeTarget($event, i, v.id)">{{v.label}}</option>
           </select>
         </td>
         <td><button type="button" class="btn btn-danger" (click)="removeTableRow(i)"><i class="fas fa-trash-alt"></i></button></td>
@@ -58,6 +59,14 @@ export class TableComponent {
 
   changeInput(event, index) {
     this.tableData[index].label = event.target.value;
+  }
+
+  changeSelect(event, index, newSelectedOption) {
+    this.tableData[index].profile = newSelectedOption;
+  }
+
+  changeTarget(event, index, newSelectedOption) {
+    this.tableData[index].target = newSelectedOption;
   }
 
   changeActive(event, index) {
