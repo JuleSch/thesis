@@ -1,16 +1,16 @@
 {
-  "test": [
+  "profiles": [
   {
-    "id": 1,
-    "label": "profile/1"
+    "id": "profile/1",
+    "label": "Kamera 1"
   },
   {
-    "id": 2,
-    "label": "profile/2"
+    "id": "profile/2",
+    "label": "Kamera 2"
   },
   {
-    "id": 3,
-    "label": "profile/3"
+    "id": "profile/3",
+    "label": "Kamera 3"
   }
 ]
 }

@@ -19,16 +19,12 @@
     {
       "id":"profile",
       "type":"select",
-      "selectRef":"videoProfiles"
+      "selectRef":"profiles"
     },
     {
       "id":"target",
       "type":"select",
-      "selectRef":
-      {
-        "ids":["", "1", "2"],
-        "labels":["-----", "Master","Slave"]
-      }
+      "selectRef":"target"
     }
   ]
 }
