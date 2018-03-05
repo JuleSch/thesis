@@ -15,11 +15,11 @@ export class DynamicSelectComponent {
               private selectComponent: SelectComponent) {
   }
 
-  createSelect(selectLabel: string, data: any, viewContainerRef: ViewContainerRef) {
+  createSelect(data: any, viewContainerRef: ViewContainerRef) {
     console.log(data);
     const factory = this.componentFactoryResolver.resolveComponentFactory(SelectComponent);
     const ref = this.viewContainerRef.createComponent(factory);
-    this.selectComponent.initSelectParams(selectLabel, data, ref);
+    this.selectComponent.initSelectParams(data, ref);
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
     // ref.changeDetectorRef.detectChanges();
   }

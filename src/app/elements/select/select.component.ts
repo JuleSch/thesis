@@ -14,17 +14,14 @@ import {Component, Input} from '@angular/core';
 })
 export class SelectComponent {
   @Input() selectLabel = '';
-  @Input() values = [];
+  @Input() values: any;
 
   constructor() {
   }
 
-  initSelectParams(selectLabel: string, data: any, ref: any) {
-    ref.instance.selectLabel = selectLabel;
-    console.log(data.test);
-    ref.instance.values = data.test;
-    console.log('Select: ' , data.test);
-
+  initSelectParams(data: any, ref: any) {
+    //ref.instance.selectLabel = selectLabel;
+    ref.instance.values = data;
   }
 
     //

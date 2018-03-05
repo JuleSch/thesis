@@ -22,7 +22,7 @@ export class DynamicTableComponent  {
     /* Das ViewContainerRef-Objekt ist ein Objekt, dass die Referenzierung auf ein bestimmtes Childelement beinhaltet.
            Also an die Stelle, an die in diesem Fall die Tabelle erzeugt werden soll.
            Mit createComponent erzeuge ich das Tabellen-Element*/
-    let ref = this.viewContainerRef.createComponent(factory);
+    const ref = this.viewContainerRef.createComponent(factory);
     this.tableComponent.initTableParams(data, ref);
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
     // ref.changeDetectorRef.detectChanges();

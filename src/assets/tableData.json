@@ -1,18 +1,21 @@
 {
-  "analogCams": [
+  "data": [
     {
       "id":"vin/1",
       "label":"Fahrerkamera",
-      "active":true,
+      "active":false,
       "profile":"profile/2",
-      "target":"2"
+      "target":"2",
+      "test":"test1"
     },
     {
       "id":"vin/2",
       "label":"Türkamera",
       "active":true,
       "profile":"profile/2",
-      "target":"1"
+      "target":"1",
+      "test":"test2"
+
     },
     {
       "id":"vin/4",
@@ -27,6 +30,34 @@
       "active":false,
       "profile":"profile/1",
       "target":""
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile/1",
+      "label": "Kamera 1"
+    },
+    {
+      "id": "profile/2",
+      "label": "Kamera 2"
+    },
+    {
+      "id": "profile/3",
+      "label": "Kamera 3"
+    }
+  ],
+  "test": [
+    {
+      "id": 1,
+      "label": "-----"
+    },
+    {
+      "id": 2,
+      "label": "Master"
+    },
+    {
+      "id": 3,
+      "label": "Slave"
     }
   ]
 }

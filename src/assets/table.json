@@ -13,18 +13,28 @@
       "type":"text"
     },
     {
+      "id": "test",
+      "type": "text"
+    },
+    {
       "id":"active",
       "type":"boolean"
     },
     {
       "id":"profile",
       "type":"select",
-      "selectRef":"profiles"
+      "selectRef": {
+        "source":["profiles", "test"]
+      }
     },
     {
       "id":"target",
       "type":"select",
-      "selectRef":"target"
+      "selectRef": {
+        "ids":["0", "1", "2"],
+        "labels":["-----", "Master","Slave"]
+
+      }
     }
   ]
 }

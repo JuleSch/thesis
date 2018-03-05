@@ -32,7 +32,7 @@ export class TestComponent implements OnInit {
     // this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
    // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
     // this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
-    // this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data, this.viewContainerRef));
+    //this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data.profiles, this.viewContainerRef));
   }
 
 
