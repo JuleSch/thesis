@@ -10,9 +10,8 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
     DynamicTableComponent,
   ],
   selector: 'app-test-table',
-  template: `<div>
-    <button (click)="buttonClick()">Ich erzeuge eine Tabelle</button>
-
+  template: `<div class="container text-center mt-5">
+    <button *ngIf="bool" class="btn btn-outline-info" (click)="buttonClick()"><i class="fas fa-power-off fa-4x"></i></button>
   </div>`
 })
 
