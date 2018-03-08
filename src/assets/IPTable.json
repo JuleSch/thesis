@@ -1,0 +1,17 @@
+{
+  "label":"IP Kameras",
+  "id":"ipCams",
+  "idColumn":"id",
+  "attributes":[
+    {
+      "id":"id",
+      "type":"text",
+      "readOnly": true
+    },
+    {
+      "id":"label",
+      "type":"text"
+    }
+  ]
+}
+
