@@ -13,10 +13,6 @@
       "type":"text"
     },
     {
-      "id": "test",
-      "type": "text"
-    },
-    {
       "id":"active",
       "type":"boolean"
     },
@@ -38,4 +34,5 @@
     }
   ]
 }
+
 

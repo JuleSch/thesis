@@ -29,7 +29,6 @@ export class TestTableComponent {
 // Ich lese 3 Files aus, die ich anschließend als ein Array mit drei JS-Objekten im Callback zurückbekomme.
 // Dieses übergebe ich dann als Parameter in einem Methodenaufruf.
 
-  // TODO: muss ich const nehmen? Vorteile/Nachteile zu let?
   processThreeDataFiles(File1: string, File2: string, File3: string) {
     let promiseOne = new Promise((resolve, reject) => {
       this.fileService.getFile(File1).subscribe(data => resolve(data));
@@ -43,15 +42,12 @@ export class TestTableComponent {
 
     // Callback der 2 Files
     Promise.all([promiseOne, promiseTwo, promiseThree]). then((values) => {
-        console.log(values)
-        let cameraTable = [values[0], values[1], values[1].data];
-        let profilesTable = [values[2], values[1], values[1].profiles];
-      this.dynamicTable.createTable(cameraTable);
-      this.dynamicTable.createTable(profilesTable);
-
-
-
-      // Hier rufe ich die Tablemethode auf und übergebe das Array und mein ViewContainerRef-Objekt der Tabelle als Parameter.
+        // console.log(values);
+        let cameraTable = [values[0]['attributes'], values[1], values[1]['data']];
+        let profilesTable = [values[2]['attributes'], values[1], values[1]['profiles']];
+        this.dynamicTable.createTable(cameraTable);
+        this.dynamicTable.createTable(profilesTable);
+        // Hier rufe ich die Tablemethode auf und übergebe das Array und mein ViewContainerRef-Objekt der Tabelle als Parameter.
         // this.tableComponent.addTable(values, this.tableContainer);
       }
     );

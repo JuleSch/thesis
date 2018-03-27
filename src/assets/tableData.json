@@ -35,15 +35,15 @@
   "profiles": [
     {
       "id": "profile/1",
-      "label": "Kamera 1"
+      "label": "Ring"
     },
     {
       "id": "profile/2",
-      "label": "Kamera 2"
+      "label": "Alarm"
     },
     {
       "id": "profile/3",
-      "label": "Kamera 3"
+      "label": "Live"
     }
   ],
   "test": [
@@ -53,11 +53,7 @@
     },
     {
       "id": 2,
-      "label": "Master"
-    },
-    {
-      "id": 3,
-      "label": "Slave"
+      "label": "DV"
     }
   ]
 }

@@ -59,6 +59,7 @@ export class TableComponent {
   @Input() tableRows = [];
   @Input() helperTables: any;
   @Input() originalData: any;
+  @Input() originalRows: any;
 
 
   nextID = 9;
@@ -111,17 +112,24 @@ export class TableComponent {
 
   resetTable() {
     console.log('resetTable');
-    this.tableRows = this.originalData.data;
+    console.log(this.originalData.data);
+    this.tableRows = this.originalRows;
     this.tableData = this.originalData;
+    console.log(this.originalData);
+
   }
 
   saveTable() {
     this.originalData = this.tableData;
+    console.log(this.originalData);
+
+
   }
 
   changeShowJson(data) {
     this.showJson = this.showJson !== true;
     this.jsonData = data;
+    console.log(data);
   }
 
   getId() {
@@ -140,7 +148,9 @@ export class TableComponent {
    // Duplizieren: ref.instance.originalData = JSON.parse(JSON.stringify(data[1]));
     // JSON filtern: ref.instance.helperTables = Object.keys(data[1]).filter(key => key !== 'data');
 
-    ref.instance.tableHeader = data[0].attributes;
+    ref.instance.originalData = JSON.parse(JSON.stringify(data[1]));
+    ref.instance.originalRows = JSON.parse(JSON.stringify(data[2]));
+    ref.instance.tableHeader = data[0];
     ref.instance.tableData = data[1];
     ref.instance.tableRows = data[2];
 

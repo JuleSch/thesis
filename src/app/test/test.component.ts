@@ -15,38 +15,62 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
     DynamicSelectComponent
   ],
   selector: 'app-test',
-  template: ``
+  template: `<div></div>`
 })
 
 export class TestComponent implements OnInit {
-  file = '/assets/profiles.json';
+  configFile = '/assets/form.json';
+  dataFile = '/assets/formData.json';
 
-  constructor(private dynamicButton: DynamicButtonComponent,
-              private dynamicCheckbox: DynamicCheckboxComponent,
+  constructor(private dynamicCheckbox: DynamicCheckboxComponent,
               private dynamicTextfield: DynamicTextfieldComponent,
               private dynamicSelect: DynamicSelectComponent,
               private viewContainerRef: ViewContainerRef,
-              private fileService: FileService) {}
+              private fileService: FileService
+              // private dynamicButton: DynamicButtonComponent,
+  ) {}
 
   ngOnInit() {
+    this.processDataFile(this.configFile, this.dataFile);
     // this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
-   // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
+    // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
     // this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
     //this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data.profiles, this.viewContainerRef));
   }
 
-
-  /* Optional, falls ich es mal brauche.
-  processOneDataFile(File: string) {
-    let promise = new Promise((resolve, reject) => {
-      this.fileService.getFile(File).subscribe(data => resolve(data));
+  processDataFile(configFile: string, dataFile: string) {
+    let promise1 = new Promise((resolve, reject) => {
+      this.fileService.getFile(configFile).subscribe(data => resolve(data));
     });
 
-    Promise.all([promise]).then((values) => {
-      console.log(values);
-      this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
+    let promise2 = new Promise((resolve, reject) => {
+      this.fileService.getFile(dataFile).subscribe(data => resolve(data));
     });
-  }*/
+
+    Promise.all([promise1, promise2]).then((values) => {
+      // values1 = das promise2, formData= ist die Id, des Arrays, [0] ist das erste Element
+      const formData = values[1]['formData'][0];
+
+      for (let entry of values[0]['attributes']) {
+        if (entry.hasOwnProperty('type')) {
+          switch (entry.type) {
+            case 'boolean':
+              console.log(formData['active']);
+              this.dynamicCheckbox.createCheckbox(entry.label, formData['active'] );
+              break;
+            case 'text':
+              this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
+              break;
+            default: console.error('Die ID' ,  entry.id , 'stimmt nicht überein.');
+          }
+        }
+        else {
+          console.error('HasOwnProperty Fehler!');
+        }
+      }
+      // this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
+    });
+  }
 }
 
 

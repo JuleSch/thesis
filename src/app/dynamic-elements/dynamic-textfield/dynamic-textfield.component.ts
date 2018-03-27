@@ -15,10 +15,10 @@ export class DynamicTextfieldComponent {
               private textfieldComponent: TextfieldComponent) {
   }
 
-  createTextfield(label: string, readonly: boolean, viewContainerRef: ViewContainerRef) {
+  createTextfield(label: string, readonly: boolean, value: string, type: string) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(TextfieldComponent);
     const ref = this.viewContainerRef.createComponent(factory);
-    this.textfieldComponent.initTextfieldParams(label, readonly, ref);
+    this.textfieldComponent.initTextfieldParams(label, readonly, value, type, ref);
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
     // ref.changeDetectorRef.detectChanges();
   }
