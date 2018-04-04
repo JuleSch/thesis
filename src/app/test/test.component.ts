@@ -19,6 +19,9 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
 })
 
 export class TestComponent implements OnInit {
+  /**
+   *  Diese beiden Variablen können später durch Eingabevariablen ersetzt werden.
+   */
   configFile = '/assets/form.json';
   dataFile = '/assets/formData.json';
 
@@ -26,18 +29,20 @@ export class TestComponent implements OnInit {
               private dynamicTextfield: DynamicTextfieldComponent,
               private dynamicSelect: DynamicSelectComponent,
               private viewContainerRef: ViewContainerRef,
-              private fileService: FileService
-              // private dynamicButton: DynamicButtonComponent,
-  ) {}
+              private fileService: FileService) {}
 
+  /**
+   * Diese Methode wird bei der Initiatlisierung der Klasse aufgerufen und ruft die Methode processDataFile auf.
+   */
   ngOnInit() {
     this.processDataFile(this.configFile, this.dataFile);
-    // this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
-    // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
-    // this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
-    // this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data.profiles);
   }
 
+  /**
+   * Diese Methode liest zwei Json-Dateien ein und baut damit dynamisch ein Formular aus verschiedenen HTML-Elementen.
+   * @param {string} configFile   Die Json-Datei, in der die Elementtypen definiert sind.
+   * @param {string} dataFile     Die Json-Datei, in der die Daten für die Elementtypen definiert sind.
+   */
   processDataFile(configFile: string, dataFile: string) {
     let promise1 = new Promise((resolve, reject) => {
       this.fileService.getFile(configFile).subscribe(data => resolve(data));
@@ -79,14 +84,20 @@ export class TestComponent implements OnInit {
           console.error('HasOwnProperty Fehler!');
         }
       }
-      // this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
     });
   }
 
-  processSelectData(label: string, selectSource: any, defaultValue: string) {
+  /**
+   * Diese Methode liest eine json-Datei ein und erzeugt eine dynamische Selectbox.
+   * @param {string} label          Das Label der Selectbox.
+   * @param {Array<string>} selectSource   Ein Array der Quellen für die Selectbox.
+   * @param {string} defaultValue   Der voreingestellte Wert für die Selectbox.
+   */
+  processSelectData(label: string, selectSource: Array<string>, defaultValue: string) {
     new Promise((resolve, reject) => {
       this.fileService.getFile('/assets/tableData.json').subscribe(data => resolve(data)); })
       .then((value) => {
+        console.log(selectSource);
         let selectData = [];
         for (let entry of selectSource) {
           for (let entryData of value[entry]) {
