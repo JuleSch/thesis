@@ -16,14 +16,15 @@
     {
       "label": "Systemnachlaufzeit",
       "id": "postTime",
-      "type": "number"
+      "type": "number",
+      "readOnly": false
     },
     {
       "label": "Standardausgabe",
       "id": "defaultOutput",
       "type": "select",
       "selectRef": {
-        "source":["data"]
+        "source":["data", "profiles"]
       }
     }
 

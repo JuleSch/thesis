@@ -6,7 +6,7 @@ import {Component, Input} from '@angular/core';
   template: `<div>
     <label>{{selectLabel}}:
       <select>
-        <option *ngFor="let v of values" [value]="v">{{v.id}}</option> <!-- ngValue unterstützt im Vergleich zu value alle Datentypen, value nur strings-->
+        <option *ngFor="let v of values" [ngValue]="v" [selected]="v.id == defaultValue">{{v.label}}</option> <!-- ngValue unterstützt im Vergleich zu value alle Datentypen, value nur strings-->
       </select>
     </label>
   </div>`,
@@ -15,13 +15,17 @@ import {Component, Input} from '@angular/core';
 export class SelectComponent {
   @Input() selectLabel = '';
   @Input() values: any;
+  @Input() defaultValue: string;
 
   constructor() {
   }
 
-  initSelectParams(data: any, ref: any) {
+  initSelectParams(data: any, label: string, defaultValue: string, ref: any) {
     //ref.instance.selectLabel = selectLabel;
     ref.instance.values = data;
+    ref.instance.selectLabel = label;
+    ref.instance.defaultValue = defaultValue;
+
   }
 
     //

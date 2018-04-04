@@ -35,7 +35,7 @@ export class TestComponent implements OnInit {
     // this.dynamicButton.createButton(this.viewContainerRef, 'OnInit-Button');
     // this.dynamicCheckbox.createCheckbox('OnInit-Checkbox', false );
     // this.dynamicTextfield.createTextfield('OnInit-Textfield', true, this.viewContainerRef);
-    //this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data.profiles, this.viewContainerRef));
+    // this.fileService.getFile(this.file).subscribe(data => this.dynamicSelect.createSelect('Hier die Box', data.profiles);
   }
 
   processDataFile(configFile: string, dataFile: string) {
@@ -61,6 +61,17 @@ export class TestComponent implements OnInit {
             case 'text':
               this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
               break;
+            case 'number':
+              this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'number');
+              break;
+            case 'select':
+              if (entry.selectRef.hasOwnProperty('source')) {
+                this.processSelectData(entry.label, entry.selectRef['source'], formData[entry.id]);
+              }
+              else {
+                console.error('Es gibt keine source!');
+              }
+              break;
             default: console.error('Die ID' ,  entry.id , 'stimmt nicht überein.');
           }
         }
@@ -71,6 +82,23 @@ export class TestComponent implements OnInit {
       // this.dynamicSelect.createSelect('Hier die Box', values[0], this.viewContainerRef);
     });
   }
+
+  processSelectData(label: string, selectSource: any, defaultValue: string) {
+    new Promise((resolve, reject) => {
+      this.fileService.getFile('/assets/tableData.json').subscribe(data => resolve(data)); })
+      .then((value) => {
+        let selectData = [];
+        for (let entry of selectSource) {
+          for (let entryData of value[entry]) {
+            selectData.push(entryData);
+          }
+        }
+        console.log(selectData);
+        this.dynamicSelect.createSelect(selectData, label, defaultValue);
+      });
+  }
+
+
 }
 
 
