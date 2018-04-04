@@ -7,7 +7,6 @@ import {CheckboxComponent} from '../../elements/checkbox/checkbox.component';
   styleUrls: ['./dynamic-checkbox.component.css']
 })
 
-@Injectable()
 export class DynamicCheckboxComponent {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,

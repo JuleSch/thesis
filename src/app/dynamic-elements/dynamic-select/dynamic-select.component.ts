@@ -7,7 +7,6 @@ import {SelectComponent} from '../../elements/select/select.component';
   styleUrls: ['./dynamic-select.component.css']
 })
 
-@Injectable()
 export class DynamicSelectComponent {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
@@ -15,11 +14,18 @@ export class DynamicSelectComponent {
               private selectComponent: SelectComponent) {
   }
 
-  createSelect(data: any, label: string, defaultValue: string) {
+  /**
+   * Diese Methode erzeugt eine dynamische Selectbox.
+   * @param {Array<string>} data     Die Selectboxdaten.
+   * @param {string} label           Das Label für die Selectbox.
+   * @param {string} defaultValue    Der Standardwert.
+   */
+  createSelect(data: Array<string>, label: string, defaultValue: string) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(SelectComponent);
     const ref = this.viewContainerRef.createComponent(factory);
     this.selectComponent.initSelectParams(data, label, defaultValue, ref);
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
+    // --> https://alligator.io/angular/change-detection-strategy/
     // ref.changeDetectorRef.detectChanges();
   }
 }
