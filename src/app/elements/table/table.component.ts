@@ -5,9 +5,10 @@ import {HttpClient} from '@angular/common/http';
 @Component({
   template: `
     <div class="mt-5">
-    <button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>
+      <!--<button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>-->
     <button class="btn btn-danger" (click)="resetTable()"><i class="fas fa-undo"></i></button>
     </div>
+<!-- Tabelle -->
     <table class="table table-responsive table table-striped table table-hover mt-2">
       <thead class="table-success">
       <th *ngFor="let headerCell of tableHeader">{{headerCell.id}}</th>
@@ -37,8 +38,9 @@ import {HttpClient} from '@angular/common/http';
       </tr>
       </tbody>
     </table>
-<!-- Button -->
+<!-- Buttons -->
     <button class="btn btn-success btn-sm mr-5" (click)="updateTable()"><i class="fas fa-plus"></i></button>
+<!-- Json -->
     <div class="fixed-top">
       <button class="btn btn-dark" (click)="changeShowJson(this.tableData)"><i class="fab fa-js"></i></button>
       <div class="alert alert-warning" role="alert" *ngIf="showJson">{{ jsonData | json }}</div>
@@ -70,9 +72,9 @@ export class TableComponent {
 
 
   saveDefault(ref) {
-    let selectDefault = [];
+    const selectDefault = [];
     if (ref.ids) {
-      for (let entry of ref.ids) {
+      for (const entry of ref.ids) {
         selectDefault.push(
           {
             'id': ref.ids[entry],
@@ -86,7 +88,7 @@ export class TableComponent {
   }
 
   saveSelectRef(ref) {
-    let selectSources = ref.source;
+    const selectSources = ref.source;
     return selectSources;
   }
 

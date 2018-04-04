@@ -1,7 +1,6 @@
 import {Component, ViewContainerRef} from '@angular/core';
 import {DynamicTableComponent} from '../dynamic-elements/dynamic-table/dynamic-table.component';
 import {FileService} from '../services/file.service';
-import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic-select.component';
 
 
 
@@ -16,52 +15,74 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
 })
 
 export class TestTableComponent {
+  /**
+   * Die Datei-Variabeln können später auch übergeben werden und müsse nicht statisch bleiben.
+   */
   file1 = '/assets/table.json';
   file2 = '/assets/tableData.json';
   file3 = '/assets/IPTable.json';
   bool = true;
 
+  // TODO: Herausfinden, warum das ViewContainerRaf hier bleiben muss.
   constructor(private dynamicTable: DynamicTableComponent,
               private viewContainerRef: ViewContainerRef,
               private fileService: FileService) {}
 
-
-// Ich lese 3 Files aus, die ich anschließend als ein Array mit drei JS-Objekten im Callback zurückbekomme.
-// Dieses übergebe ich dann als Parameter in einem Methodenaufruf.
-
-  processThreeDataFiles(File1: string, File2: string, File3: string) {
-    let promiseOne = new Promise((resolve, reject) => {
-      this.fileService.getFile(File1).subscribe(data => resolve(data));
+  /**
+   * Diese Methode liest drei Json-Dateien aus und speichert sie anschließend in ein JS-Objekt. Dieses wird dann als Parameter der Methode processTable übergeben.
+   * @param {string} tableConfig    Der Pfad zur Json-Datei, die die Konfiguration der Tabelle enthält.
+   * @param {string} tableData      Der Pfad zur Json-Datei, die die Daten der Tabelle enthält.
+   * @param {string} table2Config   Der Pfad zur Json-Datei, die die Konfiguration der 2. Tabelle enthält.
+   */
+  processTableDataFiles(tableConfig: string, tableData: string, table2Config: string) {
+    const promiseOne = new Promise((resolve, reject) => {
+      this.fileService.getFile(tableConfig).subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen der tableConfig-Datei trat ein Fehler auf: ' + error)
+      );
     });
-    let promiseTwo = new Promise((resolve, reject) => {
-      this.fileService.getFile(File2).subscribe(data => resolve(data));
+    const promiseTwo = new Promise((resolve, reject) => {
+      this.fileService.getFile(tableData).subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen der tableData-Datei trat ein Fehler auf: ' + error)
+      );
     });
-    let promiseThree = new Promise((resolve, reject) => {
-      this.fileService.getFile(File3).subscribe(data => resolve(data));
+    const promiseThree = new Promise((resolve, reject) => {
+      this.fileService.getFile(table2Config).subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen der table2Config-Datei trat ein Fehler auf: ' + error)
+      );
     });
-
-    // Callback der 2 Files
-    Promise.all([promiseOne, promiseTwo, promiseThree]). then((values) => {
-        // console.log(values);
-        let cameraTable = [values[0]['attributes'], values[1], values[1]['data']];
-        let profilesTable = [values[2]['attributes'], values[1], values[1]['profiles']];
-        this.dynamicTable.createTable(cameraTable);
-        this.dynamicTable.createTable(profilesTable);
-        // Hier rufe ich die Tablemethode auf und übergebe das Array und mein ViewContainerRef-Objekt der Tabelle als Parameter.
-        // this.tableComponent.addTable(values, this.tableContainer);
-      }
-    );
+    // Der Callback für alle Promisses.
+    Promise.all([promiseOne, promiseTwo, promiseThree])
+      .then((values) => {
+        this.processTable(values);
+      })
+      .catch((reason) => {
+      console.error(reason);
+    });
   }
 
-  buttonClick($event) {
+  /**
+   * Diese Methode erzeugt dynamische Tabellen.
+   * @param {Array<object>} tableValues   Die Daten für die Tabellen.
+   */
+  processTable(tableValues: Array<object>) {
+    const cameraTable = [tableValues[0]['attributes'], tableValues[1], tableValues[1]['data']];
+    const profilesTable = [tableValues[2]['attributes'], tableValues[1], tableValues[1]['profiles']];
+    this.dynamicTable.createTable(cameraTable);
+    this.dynamicTable.createTable(profilesTable);
+  }
+
+  /**
+   * Diese Methode ruft processTableDataFiles auf, wenn die Variabel "this.bool" true ist.
+   */
+  buttonClick() {
     if (this.bool) {
-      this.processThreeDataFiles(this.file1, this.file2, this.file3);
+      this.processTableDataFiles(this.file1, this.file2, this.file3);
       this.bool = false;
     }
   }
-
-
-
 }
 
 

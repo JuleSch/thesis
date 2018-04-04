@@ -44,72 +44,81 @@ export class TestComponent implements OnInit {
    * @param {string} dataFile     Die Json-Datei, in der die Daten für die Elementtypen definiert sind.
    */
   processDataFile(configFile: string, dataFile: string) {
-    let promise1 = new Promise((resolve, reject) => {
-      this.fileService.getFile(configFile).subscribe(data => resolve(data));
+    const configFilePromise = new Promise((resolve, reject) => {
+      this.fileService.getFile(configFile).subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen des configFiles trat ein Fehler auf: ' + error)
+      );
     });
-
-    let promise2 = new Promise((resolve, reject) => {
-      this.fileService.getFile(dataFile).subscribe(data => resolve(data));
+    const dataFilePromise = new Promise((resolve, reject) => {
+      this.fileService.getFile(dataFile).subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen des dataFiles trat ein Fehler auf: ' + error)
+      );
     });
-
-    Promise.all([promise1, promise2]).then((values) => {
-      // values1 = das promise2, formData= ist die Id, des Arrays, [0] ist das erste Element
-      const formData = values[1]['formData'][0];
-
-      for (let entry of values[0]['attributes']) {
-        if (entry.hasOwnProperty('type')) {
-          switch (entry.type) {
-            case 'boolean':
-              console.log(formData['active']);
-              this.dynamicCheckbox.createCheckbox(entry.label, formData['active'] );
-              break;
-            case 'text':
-              this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
-              break;
-            case 'number':
-              this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'number');
-              break;
-            case 'select':
-              if (entry.selectRef.hasOwnProperty('source')) {
-                this.processSelectData(entry.label, entry.selectRef['source'], formData[entry.id]);
-              }
-              else {
-                console.error('Es gibt keine source!');
-              }
-              break;
-            default: console.error('Die ID' ,  entry.id , 'stimmt nicht überein.');
+    // Callback
+    Promise.all([configFilePromise, dataFilePromise])
+      .then((values) => {
+        // values[1] = das dataFilePromise;
+        // formData= ist die Id, des Arrays;
+        // [0] ist das erste Element
+        const formData = values[1]['formData'][0];
+        for (const entry of values[0]['attributes']) {
+          if (entry.hasOwnProperty('type')) {
+            switch (entry.type) {
+              case 'boolean':
+                this.dynamicCheckbox.createCheckbox(entry.label, formData['active'] );
+                break;
+              case 'text':
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
+                break;
+              case 'number':
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'number');
+                break;
+              case 'select':
+                if (entry.selectRef.hasOwnProperty('source')) {
+                  this.processSelectData(entry.label, entry.selectRef['source'], formData[entry.id]);
+                } else {
+                  console.error('Es gibt keine source!');
+                }
+                break;
+              default: console.error('Die ID' ,  entry.id , 'stimmt nicht überein.');
+            }
+          } else {
+            console.error('HasOwnProperty Fehler!');
           }
         }
-        else {
-          console.error('HasOwnProperty Fehler!');
-        }
-      }
-    });
+      })
+      .catch((reason) => {
+        console.error(reason);
+      });
   }
 
   /**
    * Diese Methode liest eine json-Datei ein und erzeugt eine dynamische Selectbox.
-   * @param {string} label          Das Label der Selectbox.
-   * @param {Array<string>} selectSource   Ein Array der Quellen für die Selectbox.
-   * @param {string} defaultValue   Der voreingestellte Wert für die Selectbox.
+   * @param {string} label                  Das Label der Selectbox.
+   * @param {Array<string>} selectSource    Ein Array der Quellen für die Selectbox.
+   * @param {string} defaultValue           Der voreingestellte Wert für die Selectbox.
    */
   processSelectData(label: string, selectSource: Array<string>, defaultValue: string) {
     new Promise((resolve, reject) => {
-      this.fileService.getFile('/assets/tableData.json').subscribe(data => resolve(data)); })
+      this.fileService.getFile('/assets/tableData.json').subscribe(
+        data => resolve(data),
+        error => reject('Beim Auslesen der Daten für die Selektbox trat ein Fehler auf: ' + error)
+      ); })
       .then((value) => {
-        console.log(selectSource);
-        let selectData = [];
-        for (let entry of selectSource) {
-          for (let entryData of value[entry]) {
+        const selectData = [];
+        for (const entry of selectSource) {
+          for (const entryData of value[entry]) {
             selectData.push(entryData);
           }
         }
-        console.log(selectData);
         this.dynamicSelect.createSelect(selectData, label, defaultValue);
+      })
+      .catch((reason) => {
+        console.error(reason);
       });
   }
-
-
 }
 
 

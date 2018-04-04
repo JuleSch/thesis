@@ -16,7 +16,6 @@ export class DynamicSelectComponent {
   }
 
   createSelect(data: any, label: string, defaultValue: string) {
-    console.log(data);
     const factory = this.componentFactoryResolver.resolveComponentFactory(SelectComponent);
     const ref = this.viewContainerRef.createComponent(factory);
     this.selectComponent.initSelectParams(data, label, defaultValue, ref);
