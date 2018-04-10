@@ -15,7 +15,8 @@ import {DynamicSelectComponent} from '../dynamic-elements/dynamic-select/dynamic
     DynamicSelectComponent
   ],
   selector: 'app-test',
-  template: `<div></div>`
+  template: `
+    <div></div>`
 })
 
 export class TestComponent implements OnInit {

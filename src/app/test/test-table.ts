@@ -22,6 +22,7 @@ export class TestTableComponent {
   file2 = '/assets/tableData.json';
   file3 = '/assets/IPTable.json';
   bool = true;
+  jsonData: any;
 
   // TODO: Herausfinden, warum das ViewContainerRaf hier bleiben muss.
   constructor(private dynamicTable: DynamicTableComponent,
@@ -83,6 +84,8 @@ export class TestTableComponent {
       this.bool = false;
     }
   }
+
+
 }
 
 

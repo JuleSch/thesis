@@ -8,9 +8,10 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
 
 
-  title = 'Neuer Versuch';
+  title = 'Prototyp';
 
   constructor( ) {}
 
   ngOnInit() {}
+
 }

@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, EventEmitter, Output, ViewContainerRef} from '@angular/core';
 import {CheckboxComponent} from '../../elements/checkbox/checkbox.component';
 
 @Component({
@@ -13,6 +13,8 @@ export class DynamicCheckboxComponent {
               private viewContainerRef: ViewContainerRef,
               private checkboxComponent: CheckboxComponent) {
   }
+
+
 
   createCheckbox(checkBoxLabel: string, active: boolean) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(CheckboxComponent);

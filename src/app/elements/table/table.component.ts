@@ -1,14 +1,14 @@
-import {Component, Input, ViewContainerRef} from '@angular/core';
-import {FileService} from '../../services/file.service';
-import {HttpClient} from '@angular/common/http';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   template: `
-    <div class="mt-5">
-      <!--<button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>-->
-    <button class="btn btn-danger" (click)="resetTable()"><i class="fas fa-undo"></i></button>
-    </div>
-<!-- Tabelle -->
+    <app-dynamic-table (jsonClick)="getJsonData()" (undoClick)="resetData()"></app-dynamic-table>
+    <!-- Undo-Button -->
+   <!-- <div class="mt-5">
+      <!--<button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>
+      <button class="btn btn-danger" (click)="resetTable()"><i class="fas fa-undo"></i></button>
+    </div>-->
+    <!-- Tabelle -->
     <table class="table table-responsive table table-striped table table-hover mt-2">
       <thead class="table-success">
       <th *ngFor="let headerCell of tableHeader">{{headerCell.id}}</th>
@@ -38,13 +38,13 @@ import {HttpClient} from '@angular/common/http';
       </tr>
       </tbody>
     </table>
-<!-- Buttons -->
+    <!-- Hinzufügen-Button -->
     <button class="btn btn-success btn-sm mr-5" (click)="updateTable()"><i class="fas fa-plus"></i></button>
-<!-- Json -->
+    <!-- Json-Button
     <div class="fixed-top">
-      <button class="btn btn-dark" (click)="changeShowJson(this.tableData)"><i class="fab fa-js"></i></button>
+       <button class="btn btn-dark" (click)="changeShowJson(this.tableData)"><i class="fab fa-js"></i></button>
       <div class="alert alert-warning" role="alert" *ngIf="showJson">{{ jsonData | json }}</div>
-    </div>
+    </div>-->
   `,
   selector: 'app-table',
   styleUrls: ['./table.component.css']
@@ -53,7 +53,7 @@ import {HttpClient} from '@angular/common/http';
 
 export class TableComponent {
 
-  constructor( private http: HttpClient) {}
+  constructor() {}
 
   // Variablendeklaration für die Tabellendaten, die im Template benutzt werden.
   @Input() tableData: any;
@@ -63,12 +63,19 @@ export class TableComponent {
   @Input() originalData: any;
   @Input() originalRows: any;
 
+  @Output() jsonDataChange: EventEmitter<any> = new EventEmitter<any>();
+
 
   nextID = 9;
   showJson = false;
   jsonData: any;
   inputClick = [];
   selectRef = [];
+
+
+  getJsonData() {
+    this.jsonDataChange.emit(this.tableData);
+  }
 
 
   saveDefault(ref) {
@@ -117,7 +124,7 @@ export class TableComponent {
     console.log(this.originalData.data);
     this.tableRows = this.originalRows;
     this.tableData = this.originalData;
-    console.log(this.originalData);
+    console.log(this.tableData);
 
   }
 
@@ -131,7 +138,7 @@ export class TableComponent {
   changeShowJson(data) {
     this.showJson = this.showJson !== true;
     this.jsonData = data;
-    console.log(data);
+    console.log('Json type: ' , typeof this.jsonData);
   }
 
   getId() {
@@ -147,7 +154,7 @@ export class TableComponent {
     Das dritte werde ich später für options der Selectboxen in der Tabelle benutzen,
     */
 
-   // Duplizieren: ref.instance.originalData = JSON.parse(JSON.stringify(data[1]));
+    // Duplizieren: ref.instance.originalData = JSON.parse(JSON.stringify(data[1]));
     // JSON filtern: ref.instance.helperTables = Object.keys(data[1]).filter(key => key !== 'data');
 
     ref.instance.originalData = JSON.parse(JSON.stringify(data[1]));

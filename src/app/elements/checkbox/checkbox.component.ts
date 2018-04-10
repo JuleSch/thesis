@@ -1,10 +1,10 @@
-﻿import {Component, Input} from '@angular/core';
+﻿import {Component, Input } from '@angular/core';
 
 
 @Component({
   selector: 'app-checkbox',
   template: `<label *ngIf="active; else check">{{checkboxLabel}}<input type="checkbox" checked></label>
-    <ng-template #check>{{checkboxLabel}}<input type="checkbox"></ng-template>
+  <ng-template #check>{{checkboxLabel}}<input type="checkbox"></ng-template>
   <div></div>`,
   styleUrls: ['./checkbox.component.css']
 })
@@ -17,5 +17,4 @@ export class CheckboxComponent {
     ref.instance.checkboxLabel = checkboxLabel;
     ref.instance.active = active;
   }
-
 }

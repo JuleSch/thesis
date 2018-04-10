@@ -8,6 +8,7 @@ import { CheckboxComponent } from './elements/checkbox/checkbox.component';
 import { TextfieldComponent} from './elements/textfield/textfield.component';
 import { TestComponent } from './test/test.component';
 import { SelectComponent } from './elements/select/select.component';
+import { TestButtonComponent} from './test/test-button';
 import { ButtonComponent } from './elements/button/button.component';
 import { TableComponent } from './elements/table/table.component';
 import { DynamicButtonComponent} from './dynamic-elements/dynamic-button/dynamic-button.component';
@@ -33,6 +34,7 @@ import { FileService } from './services/file.service';
     AppComponent,
     TestComponent,
     TestTableComponent,
+    TestButtonComponent,
     CheckboxComponent,
     TextfieldComponent,
     SelectComponent,
