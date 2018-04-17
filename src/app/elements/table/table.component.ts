@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   template: `
-    <app-dynamic-table (jsonClick)="getJsonData()" (undoClick)="resetData()"></app-dynamic-table>
+    <app-json-button *ngIf="showButton" (jsonClick)="getJsonData()" ></app-json-button>
     <!-- Undo-Button -->
    <!-- <div class="mt-5">
       <!--<button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>
@@ -39,12 +39,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
       </tbody>
     </table>
     <!-- Hinzufügen-Button -->
-    <button class="btn btn-success btn-sm mr-5" (click)="updateTable()"><i class="fas fa-plus"></i></button>
-    <!-- Json-Button
-    <div class="fixed-top">
-       <button class="btn btn-dark" (click)="changeShowJson(this.tableData)"><i class="fab fa-js"></i></button>
-      <div class="alert alert-warning" role="alert" *ngIf="showJson">{{ jsonData | json }}</div>
-    </div>-->
+    <button class="btn btn-success btn-sm mr-5 mb-5" (click)="updateTable()"><i class="fas fa-plus"></i></button>
   `,
   selector: 'app-table',
   styleUrls: ['./table.component.css']
@@ -62,13 +57,13 @@ export class TableComponent {
   @Input() helperTables: any;
   @Input() originalData: any;
   @Input() originalRows: any;
+  @Input() showButton: boolean;
+
 
   @Output() jsonDataChange: EventEmitter<any> = new EventEmitter<any>();
 
 
   nextID = 9;
-  showJson = false;
-  jsonData: any;
   inputClick = [];
   selectRef = [];
 
@@ -135,11 +130,6 @@ export class TableComponent {
 
   }
 
-  changeShowJson(data) {
-    this.showJson = this.showJson !== true;
-    this.jsonData = data;
-    console.log('Json type: ' , typeof this.jsonData);
-  }
 
   getId() {
     this.nextID++;
@@ -148,7 +138,7 @@ export class TableComponent {
 
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
-  initTableParams(data: any, ref: any) {
+  initTableParams(data: any, ref: any, showButton: boolean) {
     /* mit "instance" übergebe ich mein Input an das Element.
     In diesem Fall das erste Objekt des Arrays für die Header und das 2. für die Daten.
     Das dritte werde ich später für options der Selectboxen in der Tabelle benutzen,
@@ -162,6 +152,7 @@ export class TableComponent {
     ref.instance.tableHeader = data[0];
     ref.instance.tableData = data[1];
     ref.instance.tableRows = data[2];
+    ref.instance.showButton = showButton;
 
   }
 

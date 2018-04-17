@@ -71,8 +71,8 @@ export class TestTableComponent {
   processTable(tableValues: Array<object>) {
     const cameraTable = [tableValues[0]['attributes'], tableValues[1], tableValues[1]['data']];
     const profilesTable = [tableValues[2]['attributes'], tableValues[1], tableValues[1]['profiles']];
-    this.dynamicTable.createTable(cameraTable);
-    this.dynamicTable.createTable(profilesTable);
+    this.dynamicTable.createTable(cameraTable, true);
+    this.dynamicTable.createTable(profilesTable, false);
   }
 
   /**
@@ -84,7 +84,6 @@ export class TestTableComponent {
       this.bool = false;
     }
   }
-
 
 }
 
