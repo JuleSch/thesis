@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 
-// TODO: herausfinden warum Syntax mit "!" und nicht mit {{}}
+// TODO: herausfinden warum Syntax mit "" und nicht mit {{}}
 @Component({
   selector: 'app-textfield',
-  template: `<label>{{label}}<input type="{{type}}" value="{{value}}" [readonly]="!readonly"></label>
+  template: `<label>{{label}}<input type="{{type}}" value="{{value}}" [readonly]="readonly"></label>
              <div></div>`,
   styleUrls: ['./textfield.component.css']
 })
