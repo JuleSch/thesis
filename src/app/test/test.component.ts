@@ -61,24 +61,24 @@ export class TestComponent implements OnInit {
     Promise.all([configFilePromise, dataFilePromise])
       .then((values) => {
         // values[1] = das dataFilePromise;
-        // formData= ist die Id, des Arrays;
+        // value= ist die Id, des Arrays;
         // [0] ist das erste Element
-        const formData = values[1]['formData'][0];
+        const value = values[1]['formData'][0];
         for (const entry of values[0]['attributes']) {
           if (entry.hasOwnProperty('type')) {
             switch (entry.type) {
               case 'boolean':
-                this.dynamicCheckbox.createCheckbox(entry.label, formData['active'] );
+                this.dynamicCheckbox.createCheckbox(entry.label, value['active'] );
                 break;
               case 'text':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, value[entry.id], 'text');
                 break;
               case 'number':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'number');
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, value[entry.id], 'number');
                 break;
               case 'select':
                 if (entry.selectRef.hasOwnProperty('source')) {
-                  this.processSelectData(entry.label, entry.selectRef['source'], formData[entry.id]);
+                  this.processSelectData(entry.label, entry.selectRef['source'], value[entry.id]);
                 } else {
                   console.error('Es gibt keine source!');
                 }

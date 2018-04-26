@@ -5,7 +5,6 @@ import {Component, Input} from '@angular/core';
   selector: 'app-textfield',
   template: `<label>{{label}}<input type="{{type}}" value="{{value}}" [readonly]="readonly"></label>
              <div></div>`,
-  styleUrls: ['./textfield.component.css']
 })
 
 export class TextfieldComponent {
