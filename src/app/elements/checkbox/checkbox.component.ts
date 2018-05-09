@@ -3,18 +3,17 @@
 
 @Component({
   selector: 'app-checkbox',
-  template: `<label *ngIf="active; else check">{{checkboxLabel}}<input type="checkbox" checked></label>
-  <ng-template #check>{{checkboxLabel}}<input type="checkbox"></ng-template>
+  template: `<label>{{checkboxLabel}}<input [(ngModel)]="formData['active']" type="checkbox"></label>
   <div></div>`,
   styleUrls: ['./checkbox.component.css']
 })
 
 export class CheckboxComponent {
   @Input() checkboxLabel = '';
-  @Input() active: boolean;
+  @Input() formData: any;
 
-  initCheckboxParams(checkboxLabel: string, active: boolean, ref: any) {
+  initCheckboxParams(checkboxLabel: string, formData: any, ref: any) {
     ref.instance.checkboxLabel = checkboxLabel;
-    ref.instance.active = active;
+    ref.instance.formData = formData;
   }
 }

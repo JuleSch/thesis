@@ -27,11 +27,7 @@ export class DynamicTableComponent  {
            Mit createComponent erzeuge ich das Tabellen-Element*/
     const ref = this.viewContainerRef.createComponent(factory);
     this.tableComponent.initTableParams(data, ref, showbutton);
-    // Eventemit-methode für dynamische tempaltes
-    ref.instance.jsonDataChange.subscribe(v => {
-      console.log('daten in dynamischer Tabelle angekommen', v);
-      this.sendJsonData(v);
-      });
+       // Eventemit-methode für dynamische tempaltes
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
     // ref.changeDetectorRef.detectChanges();
   }

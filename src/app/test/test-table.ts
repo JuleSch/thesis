@@ -71,7 +71,14 @@ export class TestTableComponent {
   processTable(tableValues: Array<object>) {
     const cameraTable = [tableValues[0]['attributes'], tableValues[1], tableValues[1]['data']];
     const profilesTable = [tableValues[2]['attributes'], tableValues[1], tableValues[1]['profiles']];
+    //let tableData = this.dynamicTable.createTable(cameraTable, true);
     this.dynamicTable.createTable(cameraTable, true);
+    setTimeout(() => {
+       console.log('table: ' , tableValues[1]);
+      tableValues[1]['data'][0].active = true;
+      tableValues[1]['profiles'][0].label = 'ganzneu';
+      tableValues[1]['profiles'][1].label = 'neuerAlarm';
+    }, 5000);
     this.dynamicTable.createTable(profilesTable, false);
   }
 

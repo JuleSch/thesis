@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   template: `
@@ -22,8 +22,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
           <td *ngIf="header.type == 'text' && !inputClick[i]" (click)="inputClick[i] = true">{{row[header.id]}}</td>
           <td *ngIf="header.type == 'text' && inputClick[i] && !header.readonly"><input type="text" name="{{row[header.id]}}" value="{{row[header.id]}}" [(ngModel)]="row[header.id]" (blur)="inputClick[i] = false"></td>
           <!--Checkbox-->
-          <td *ngIf="header.type == 'boolean' && row[header.type]"><input [(ngModel)]="row[header.id]" type="checkbox" checked></td>
-          <td *ngIf="header.type == 'boolean' && !row[header.type]"><input [(ngModel)]="row[header.id]" type="checkbox"></td>
+          <td *ngIf="header.type == 'boolean'"><input [(ngModel)]="row[header.id]" type="checkbox"></td>
           <!--Select-->
           <td *ngIf="header.type == 'select'">
             <select class="custom-select"  [(ngModel)]="row[header.id]">
@@ -46,7 +45,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 
 
-export class TableComponent {
+export class TableComponent implements OnInit {
 
   constructor() {}
 
@@ -61,13 +60,21 @@ export class TableComponent {
 
 
   @Output() jsonDataChange: EventEmitter<any> = new EventEmitter<any>();
-
+  @Output() getData: EventEmitter<any> = new EventEmitter<any>();
 
   nextID = 9;
   inputClick = [];
   selectRef = [];
 
+  ngOnInit() {
 
+    setTimeout(() => this.getTheData(), 2000);
+
+  }
+
+  getTheData () {
+    this.getData.emit(this.tableData);
+  }
   getJsonData() {
     this.jsonDataChange.emit(this.tableData);
   }
