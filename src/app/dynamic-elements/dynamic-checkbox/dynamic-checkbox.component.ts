@@ -15,17 +15,11 @@ export class DynamicCheckboxComponent {
   }
 
 
-  createCheckbox(checkBoxLabel: string, formData: any) {
+  createCheckbox(checkBoxLabel: string, formData: any, valueName: string) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(CheckboxComponent);
     const ref = this.viewContainerRef.createComponent(factory);
-    this.checkboxComponent.initCheckboxParams(checkBoxLabel, formData, ref);
-    /*
-      createCheckbox(checkBoxLabel: string, active: boolean) {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(CheckboxComponent);
-        const ref = this.viewContainerRef.createComponent(factory);
-        this.checkboxComponent.initCheckboxParams(checkBoxLabel, active, ref);
+    this.checkboxComponent.initCheckboxParams(checkBoxLabel, formData, valueName, ref);
         // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
         // ref.changeDetectorRef.detectChanges();
-      }*/
   }
 }

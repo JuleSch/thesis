@@ -68,14 +68,15 @@ export class TestComponent implements OnInit {
           if (entry.hasOwnProperty('type')) {
             switch (entry.type) {
               case 'boolean':
-                this.dynamicCheckbox.createCheckbox(entry.label, formData);
+                this.dynamicCheckbox.createCheckbox(entry.label, formData, entry.id);
                // this.dynamicCheckbox.createCheckbox(entry.label, formData[entry.id] );
                 break;
               case 'text':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData,  entry.id, 'text');
+               // this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
                 break;
               case 'number':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'number');
+                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], entry.id, 'number');
                 break;
               case 'select':
                 if (entry.selectRef.hasOwnProperty('source')) {
@@ -90,10 +91,11 @@ export class TestComponent implements OnInit {
             console.error('HasOwnProperty Fehler!');
           }
         }
+        /* -------------------Test zum Umschalten eines Wertes einer Checkbox. Geht aber mit allen.-------------------------
         setTimeout(() => {
           formData['active'] = false;
           console.log(formData['active']);
-        }, 5000);
+        }, 5000);*/
 
       })
       .catch((reason) => {
