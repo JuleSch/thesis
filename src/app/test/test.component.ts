@@ -57,14 +57,14 @@ export class TestComponent implements OnInit {
         error => reject('Beim Auslesen des dataFiles trat ein Fehler auf: ' + error)
       );
     });
-    // Callback
     Promise.all([configFilePromise, dataFilePromise])
-      .then((values) => {
-        // values[1] = das dataFilePromise;
-        // formData= ist die Id, des Arrays;
-        // [0] ist das erste Element
-        const formData = values[1]['formData'][0];
-        for (const entry of values[0]['attributes']) {
+      .then((promise) => {
+        // Callback
+        // promise[0] = ist das configFilePromise;
+        // promise[1] = das dataFilePromise;
+        // formData  = die Daten vom dataFile;
+        const formData = promise[1]['formData'][0];
+        for (const entry of promise[0]['attributes']) {
           if (entry.hasOwnProperty('type')) {
             switch (entry.type) {
               case 'boolean':

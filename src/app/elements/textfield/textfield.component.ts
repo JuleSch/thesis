@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 
-// TODO: herausfinden warum Syntax mit "" und nicht mit {{}}
 @Component({
   selector: 'app-textfield',
   template: `<label>{{label}}<input type="{{type}}" [(ngModel)]="formData[valueName]" [readonly]="readonly" (ngModelChange)="textChanged($event)"></label>
@@ -28,7 +27,7 @@ export class TextfieldComponent {
 
   private textChanged(event) {
     console.log('changed', this.valueName, event);
-    this.valueName=event;                          //<<<###added
+    this.valueName = event;                          // <<<###added
   }
 
 }
