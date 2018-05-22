@@ -4,7 +4,7 @@
       "active": true,
       "deviceName": "Gerät 123",
       "postTime": 10,
-      "defaultOutput": "vin/1"
+      "defaultOutput": "1"
     }
   ]
 }
