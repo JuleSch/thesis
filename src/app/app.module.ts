@@ -59,7 +59,8 @@ import { FileService } from './services/file.service';
     TableComponent,
     TextfieldComponent,
     SelectComponent,
-    JsonButtonComponent
+    JsonButtonComponent,
+    DynamicTableComponent
   ],
   bootstrap: [AppComponent]
 })

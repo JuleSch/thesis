@@ -7,10 +7,10 @@ import {Component, Input} from '@angular/core';
 })
 
 export class TextfieldComponent {
+  @Input() type: string;
   @Input() label: string;
   @Input() readonly: boolean;
   @Input() formData: any;
-  @Input() type: string;
   @Input() valueName: string;
 
 
@@ -18,10 +18,10 @@ export class TextfieldComponent {
   constructor() {}
 
   initTextfieldParams(label: string, readonly: boolean, formData: any, valueName: string, type: string, viewContainerRef: any) {
+    viewContainerRef.instance.type = type;
     viewContainerRef.instance.label = label;
     viewContainerRef.instance.readonly = readonly;
     viewContainerRef.instance.formData = formData;
-    viewContainerRef.instance.type = type;
     viewContainerRef.instance.valueName = valueName;
   }
 

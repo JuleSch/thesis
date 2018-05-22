@@ -1,35 +1,44 @@
 {
   "data": [
     {
-      "id":"vin/1",
-      "label":"Fahrerkamera",
-      "active":false,
-      "profile":"profile/2",
-      "target":"2",
-      "test":"test1"
+      "Eingang":"vin/1",
+      "Label":"Kamera 1",
+      "Aktiv":false,
+      "Spiegel am Monitor":true,
+      "Standardprofil":"1",
+      "Alarmprofil":"2",
+      "Liveprofil":"3",
+      "profile":"profile/2"
     },
     {
-      "id":"vin/2",
-      "label":"Türkamera",
-      "active":true,
-      "profile":"profile/2",
-      "target":"1",
-      "test":"test2"
-
+      "Eingang":"vin/2",
+      "Label":"Kamera 2",
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
+      "Standardprofil":"1",
+      "Alarmprofil":"2",
+      "Liveprofil":"3",
+      "profile":"profile/2"
     },
     {
-      "id":"vin/4",
-      "label":"Rückfahrkamera",
-      "active":true,
-      "profile":"profile/1",
-      "target":"3"
+      "Eingang":"vin/4",
+      "Label":"Kamera 3",
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
+      "Standardprofil":"1",
+      "Alarmprofil":"2",
+      "Liveprofil":"3",
+      "profile":"profile/1"
     },
     {
-      "id":"vin/6",
-      "label":"",
-      "active":false,
-      "profile":"profile/1",
-      "target":""
+      "Eingang":"vin/6",
+      "Label":"Kamera 4",
+      "Aktiv":false,
+      "Spiegel am Monitor":true,
+      "Standardprofil":"1",
+      "Alarmprofil":"2",
+      "Liveprofil":"3",
+      "profile":"profile/1"
     }
   ],
   "profiles": [

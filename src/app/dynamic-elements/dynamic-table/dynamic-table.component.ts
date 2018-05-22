@@ -14,11 +14,10 @@ export class DynamicTableComponent  {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef,
-              private tableComponent: TableComponent,
-              private jsonButton: JsonButtonComponent) {
+              private tableComponent: TableComponent) {
   }
 
-  createTable(data: any, showbutton: boolean) {
+  createTable(data: any) {
     /* Mit der Klasse ComponentFactoryResolver, habe ich die Möglichkeit, über tableFactory Zugriff auf das Template von TableComponent
     zu bekommen. */
     const factory = this.componentFactoryResolver.resolveComponentFactory(TableComponent);
@@ -26,15 +25,9 @@ export class DynamicTableComponent  {
            Also an die Stelle, an die in diesem Fall die Tabelle erzeugt werden soll.
            Mit createComponent erzeuge ich das Tabellen-Element*/
     const ref = this.viewContainerRef.createComponent(factory);
-    this.tableComponent.initTableParams(data, ref, showbutton);
+    this.tableComponent.initTableParams(data, ref);
        // Eventemit-methode für dynamische tempaltes
     // TODO: herausfinden ob der nächste auskommentierte Code nützlich ist.
     // ref.changeDetectorRef.detectChanges();
   }
-
-  sendJsonData(v) {
-    this.jsonButton.showAlert(v);
-  }
-
-
 }

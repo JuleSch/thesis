@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   template: `
-    <app-json-button *ngIf="showButton" (jsonClick)="getJsonData()" ></app-json-button>
+    <!--<app-json-button *ngIf="showButton" (jsonClick)="getJsonData()" ></app-json-button>-->
     <!-- Undo-Button -->
    <!-- <div class="mt-5">
       <!--<button class="btn btn-dark" (click)="saveTable()"><i class="fas fa-save"></i></button>
@@ -56,7 +56,6 @@ export class TableComponent implements OnInit {
   @Input() helperTables: any;
   @Input() originalData: any;
   @Input() originalRows: any;
-  @Input() showButton: boolean;
 
 
   @Output() jsonDataChange: EventEmitter<any> = new EventEmitter<any>();
@@ -116,8 +115,8 @@ export class TableComponent implements OnInit {
 
   updateTable() {
     this.tableRows.push({
-      'id': 'vin/' + this.getId(),
-      'label': 'Neues Label'
+      'Eingang': 'vin/' + this.getId(),
+      'Label': 'Neues Label'
     });
   }
 
@@ -145,7 +144,7 @@ export class TableComponent implements OnInit {
 
 
   // initTableParams erwartet Daten und ein ViewContainerRef-Objekt
-  initTableParams(data: any, ref: any, showButton: boolean) {
+  initTableParams(data: any, ref: any) {
     /* mit "instance" übergebe ich mein Input an das Element.
     In diesem Fall das erste Objekt des Arrays für die Header und das 2. für die Daten.
     Das dritte werde ich später für options der Selectboxen in der Tabelle benutzen,
@@ -159,7 +158,6 @@ export class TableComponent implements OnInit {
     ref.instance.tableHeader = data[0];
     ref.instance.tableData = data[1];
     ref.instance.tableRows = data[2];
-    ref.instance.showButton = showButton;
 
   }
 

@@ -4,32 +4,51 @@
   "idColumn":"id",
   "attributes":[
     {
-      "id":"id",
+      "id":"Eingang",
       "type":"text",
       "readOnly": true
     },
     {
-      "id":"label",
+      "id":"Label",
       "type":"text"
     },
     {
-      "id":"active",
+      "id":"Aktiv",
       "type":"boolean"
+    },
+    {
+      "id":"Spiegel am Monitor",
+      "type":"boolean"
+    },
+    {
+      "id":"Standardprofil",
+      "type":"select",
+      "selectRef": {
+        "ids":["0", "1", "2", "3"],
+        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
+      }
+    },
+    {
+      "id":"Alarmprofil",
+      "type":"select",
+      "selectRef": {
+        "ids":["0", "1", "2", "3"],
+        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
+      }
+    },
+    {
+      "id":"Liveprofil",
+      "type":"select",
+      "selectRef": {
+        "ids":["0", "1", "2", "3"],
+        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
+      }
     },
     {
       "id":"profile",
       "type":"select",
       "selectRef": {
         "source":["profiles", "test"]
-      }
-    },
-    {
-      "id":"target",
-      "type":"select",
-      "selectRef": {
-        "ids":["0", "1", "2"],
-        "labels":["-----", "Master","Slave"]
-
       }
     }
   ]
