@@ -9,12 +9,11 @@ import {FileService} from '../services/file.service';
     DynamicTableComponent,
   ],
   selector: 'app-test-table',
-  template: `<div class="container text-center mt-5" *ngIf="bool; else showJson">
-    <button class="btn btn-outline-info" (click)="buttonClick()">
-      <i class="fas fa-power-off fa-4x"></i></button>
-  </div>
+  template: `<div class="container text-center mt-5" *ngIf="showTableButton; else showJson">
+    <button class="btn btn-outline-info" (click)="tableButtonClick()">
+      <i class="fas fa-power-off fa-4x"></i></button></div>
   <ng-template #showJson>
-    <app-json-button (click)="onJsonClick()"></app-json-button>
+    <app-json-button (click)="onJsonButtonClick()"></app-json-button>
   </ng-template>`
 })
 
@@ -25,7 +24,7 @@ export class TestTableComponent {
   file1 = '/assets/table.json';
   file2 = '/assets/tableData.json';
   file3 = '/assets/IPTable.json';
-  bool = true;
+  showTableButton = true;
   private jsonData: any;
 
   // TODO: Herausfinden, warum das ViewContainerRaf hier bleiben muss.
@@ -90,14 +89,14 @@ export class TestTableComponent {
   /**
    * Diese Methode ruft processTableDataFiles auf, wenn die Variabel "this.bool" true ist.
    */
-  buttonClick() {
-    if (this.bool) {
+  tableButtonClick() {
+    if (this.showTableButton) {
       this.processTableDataFiles(this.file1, this.file2, this.file3);
-      this.bool = false;
+      this.showTableButton = false;
     }
   }
 
-  onJsonClick() {
+  onJsonButtonClick() {
     console.log('Json-Button gedrückt.' , this.jsonData);
     alert(JSON.stringify(this.jsonData));
   }

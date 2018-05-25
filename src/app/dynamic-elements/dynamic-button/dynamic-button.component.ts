@@ -9,10 +9,7 @@ import {ButtonComponent} from '../../elements/button/button.component';
   `
 })
 
-// TODO: @Injectable() definiert die Klasse als Service. Herausfinden, ob ich @Component davon trennen sollte.
-// TODO: Sollten Services immer ein return in einer Methode haben?
-// TODO: Sollte ich die Klasse zu service umbenennen?
-@Injectable()
+
 export class DynamicButtonComponent {
 
   // TODO: Herausfinden, warum ich die Objekte der Klassen nicht auch außerhalb definieren kann.

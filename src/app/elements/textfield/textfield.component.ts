@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-textfield',
-  template: `<label>{{label}}<input type="{{type}}" [(ngModel)]="formData[valueName]" [readonly]="readonly" (ngModelChange)="textChanged($event)"></label>
+  template: `<label>{{label}}<input type="{{type}}" [(ngModel)]="formData[valueName]" [readonly]="readonly" (ngModelChange)="textChanged($event)" placeholder="Enter text here."></label>
              <div></div>`,
 })
 
@@ -17,7 +17,7 @@ export class TextfieldComponent {
 
   constructor() {}
 
-  initTextfieldParams(label: string, readonly: boolean, formData: any, valueName: string, type: string, viewContainerRef: any) {
+  initTextfieldParams(label: string, type: string, readonly = false, formData = [], valueName = 'valueName',  viewContainerRef?: any) {
     viewContainerRef.instance.type = type;
     viewContainerRef.instance.label = label;
     viewContainerRef.instance.readonly = readonly;

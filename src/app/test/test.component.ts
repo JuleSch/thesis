@@ -36,6 +36,7 @@ export class TestComponent implements OnInit {
    * Diese Methode wird bei der Initiatlisierung der Klasse aufgerufen und ruft die Methode processDataFile auf.
    */
   ngOnInit() {
+    this.dynamicTextfield.createTextfield('Name:', 'text');
     this.processDataFile(this.configFile, this.dataFile);
   }
 
@@ -72,11 +73,11 @@ export class TestComponent implements OnInit {
                // this.dynamicCheckbox.createCheckbox(entry.label, formData[entry.id] );
                 break;
               case 'text':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData,  entry.id, 'text');
+                this.dynamicTextfield.createTextfield(entry.label, 'text', entry.readOnly, formData,  entry.id);
                // this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
                 break;
               case 'number':
-                this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], entry.id, 'number');
+                this.dynamicTextfield.createTextfield(entry.label,  'number', entry.readOnly, formData[entry.id], entry.id);
                 break;
               case 'select':
                 if (entry.selectRef.hasOwnProperty('source')) {

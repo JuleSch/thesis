@@ -24,7 +24,7 @@
       "id": "defaultOutput",
       "type": "select",
       "selectRef": {
-        "source":["data", "profiles"]
+        "source":["profiles", "test"]
       }
     }
 
