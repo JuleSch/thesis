@@ -36,8 +36,8 @@ export class TestComponent implements OnInit {
    * Diese Methode wird bei der Initiatlisierung der Klasse aufgerufen und ruft die Methode processDataFile auf.
    */
   ngOnInit() {
-    this.dynamicTextfield.createTextfield('Name:', 'text');
-    this.processDataFile(this.configFile, this.dataFile);
+    this.dynamicTextfield.createTextfield('text:', 'Name');
+    this.processDataFiles(this.configFile, this.dataFile);
   }
 
   /**
@@ -45,7 +45,7 @@ export class TestComponent implements OnInit {
    * @param {string} configFile   Die Json-Datei, in der die Elementtypen definiert sind.
    * @param {string} dataFile     Die Json-Datei, in der die Daten für die Elementtypen definiert sind.
    */
-  processDataFile(configFile: string, dataFile: string) {
+  processDataFiles(configFile: string, dataFile: string) {
     const configFilePromise = new Promise((resolve, reject) => {
       this.fileService.getFile(configFile).subscribe(
         data => resolve(data),
@@ -59,13 +59,13 @@ export class TestComponent implements OnInit {
       );
     });
     Promise.all([configFilePromise, dataFilePromise])
-      .then((promise) => {
+      .then((result) => {
         // Callback
-        // promise[0] = ist das configFilePromise;
-        // promise[1] = das dataFilePromise;
+        // result[0] = ist das Ergebnis des configFilePromise';
+        // result[1] = ist das Ergebnis des dataFilePromise';
         // formData  = die Daten vom dataFile;
-        const formData = promise[1]['formData'][0];
-        for (const entry of promise[0]['attributes']) {
+        const formData = result[1]['formData'][0];
+        for (const entry of result[0]['attributes']) {
           if (entry.hasOwnProperty('type')) {
             switch (entry.type) {
               case 'boolean':
@@ -73,11 +73,11 @@ export class TestComponent implements OnInit {
                // this.dynamicCheckbox.createCheckbox(entry.label, formData[entry.id] );
                 break;
               case 'text':
-                this.dynamicTextfield.createTextfield(entry.label, 'text', entry.readOnly, formData,  entry.id);
-               // this.dynamicTextfield.createTextfield(entry.label, entry.readOnly, formData[entry.id], 'text');
+                this.dynamicTextfield.createTextfield('text', entry.label, entry.readOnly,  formData,  entry.id);
+               // this.dynamicTextfield.createTextfield(entry.label,entry.readOnly, formData[entry.id], 'text');
                 break;
               case 'number':
-                this.dynamicTextfield.createTextfield(entry.label,  'number', entry.readOnly, formData[entry.id], entry.id);
+                this.dynamicTextfield.createTextfield('number', entry.label, entry.readOnly,  formData[entry.id], entry.id);
                 break;
               case 'select':
                 if (entry.selectRef.hasOwnProperty('source')) {

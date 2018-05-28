@@ -17,7 +17,7 @@
       "label": "Systemnachlaufzeit",
       "id": "postTime",
       "type": "number",
-      "readOnly": false
+      "readOnly": true
     },
     {
       "label": "Standardausgabe",
