@@ -80,8 +80,8 @@ export class TestTableComponent {
     setTimeout(() => {
        console.log('table: ' , tableValues[1]);
       tableValues[1]['data'][0].active = true;
-      tableValues[1]['profiles'][0].label = 'ganzneu';
-      tableValues[1]['profiles'][1].label = 'neuerAlarm';
+      tableValues[1]['profiles'][0].label = 'Label';
+      //tableValues[1]['profiles'][1].label = 'neuerAlarm';
     }, 5000);
     this.dynamicTable.createTable(profilesTable);
   }

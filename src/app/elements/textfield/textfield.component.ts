@@ -3,7 +3,7 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-textfield',
   template: `<label>{{label}}<input type="{{type}}" [(ngModel)]="formData[valueName]" [readonly]="readonly" (ngModelChange)="textChanged($event)"></label>
-             <div></div>`,
+  <div></div>`,
 })
 
 export class TextfieldComponent {
@@ -12,8 +12,6 @@ export class TextfieldComponent {
   @Input() readonly: boolean;
   @Input() formData: any;
   @Input() valueName: string;
-
-
 
   constructor() {}
 

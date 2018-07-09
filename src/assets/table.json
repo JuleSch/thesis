@@ -24,31 +24,24 @@
       "id":"Standardprofil",
       "type":"select",
       "selectRef": {
-        "ids":["0", "1", "2", "3"],
-        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
+        "ids":["0", "1"],
+        "labels":["-------", "Standard-Alarm&Ring-Profil"]
       }
     },
     {
       "id":"Alarmprofil",
       "type":"select",
       "selectRef": {
-        "ids":["0", "1", "2", "3"],
-        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
+        "ids":["0", "1"],
+        "labels":["-------", "Standard-Alarm&Ring-Profil"]
       }
     },
     {
       "id":"Liveprofil",
       "type":"select",
       "selectRef": {
-        "ids":["0", "1", "2", "3"],
-        "labels":["-------", "Standard-Ring-Profil","Standard-Alarm-Profil", "Standard-Live-Profil"]
-      }
-    },
-    {
-      "id":"profile",
-      "type":"select",
-      "selectRef": {
-        "source":["profiles", "test"]
+        "ids":["0", "1"],
+        "labels":["-------", "Standard-Alarm&Ring-Profil"]
       }
     }
   ]

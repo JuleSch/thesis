@@ -36,7 +36,7 @@ export class TestComponent implements OnInit {
    * Diese Methode wird bei der Initiatlisierung der Klasse aufgerufen und ruft die Methode processDataFile auf.
    */
   ngOnInit() {
-    this.dynamicTextfield.createTextfield('text:', 'Name');
+    this.dynamicTextfield.createTextfield('text:', 'Beispiellabel');
     this.processDataFiles(this.configFile, this.dataFile);
   }
 

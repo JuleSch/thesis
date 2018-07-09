@@ -3,11 +3,11 @@
     {
       "Eingang":"vin/1",
       "Label":"Kamera 1",
-      "Aktiv":false,
-      "Spiegel am Monitor":true,
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
       "Standardprofil":"1",
-      "Alarmprofil":"2",
-      "Liveprofil":"3",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
       "profile":"profile/2"
     },
     {
@@ -16,8 +16,8 @@
       "Aktiv":true,
       "Spiegel am Monitor":false,
       "Standardprofil":"1",
-      "Alarmprofil":"2",
-      "Liveprofil":"3",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
       "profile":"profile/2"
     },
     {
@@ -26,34 +26,42 @@
       "Aktiv":true,
       "Spiegel am Monitor":false,
       "Standardprofil":"1",
-      "Alarmprofil":"2",
-      "Liveprofil":"3",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
+      "profile":"profile/1"
+    },
+    {
+      "Eingang":"vin/4",
+      "Label":"Kamera 4",
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
+      "Standardprofil":"1",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
+      "profile":"profile/1"
+    },
+    {
+      "Eingang":"vin/5",
+      "Label":"Kamera 5",
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
+      "Standardprofil":"1",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
       "profile":"profile/1"
     },
     {
       "Eingang":"vin/6",
-      "Label":"Kamera 4",
-      "Aktiv":false,
-      "Spiegel am Monitor":true,
+      "Label":"Kamera 6",
+      "Aktiv":true,
+      "Spiegel am Monitor":false,
       "Standardprofil":"1",
-      "Alarmprofil":"2",
-      "Liveprofil":"3",
+      "Alarmprofil":"1",
+      "Liveprofil":"0",
       "profile":"profile/1"
     }
   ],
   "profiles": [
-    {
-      "id": "profile/1",
-      "label": "Ring"
-    },
-    {
-      "id": "profile/2",
-      "label": "Alarm"
-    },
-    {
-      "id": "profile/3",
-      "label": "Live"
-    }
   ],
   "test": [
     {
